@@ -14,13 +14,9 @@ export default function Header() {
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <a href="index.html" className="flex items-center gap-3">
-          <img
-            src="/svg/logo.svg"
-            alt="Axial Construct"
-            className="h-10 w-10"
-          />
+          <img src="/svg/logo.svg" alt="Satomen" className="h-10 w-10" />
           <span className="text-xl font-bold">
-            Axial <span className="text-green-500">Construct</span>
+            Satomen <span className="text-green-500">Investment SA</span>
           </span>
         </a>
 

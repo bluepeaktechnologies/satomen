@@ -20,13 +20,9 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <a href="index.html" className="inline-flex items-center gap-3">
-              <img
-                src="/svg/logo.svg"
-                alt="Axial Construct"
-                className="h-10 w-10"
-              />
+              <img src="/svg/logo.svg" alt="Satomen" className="h-10 w-10" />
               <span className="text-xl font-semibold tracking-wide">
-                Axial <span className="text-yellow-400">Construct</span>
+                Satomen <span className="text-yellow-400">Investment SA</span>
               </span>
             </a>
             <p className="mt-6 text-slate-300 leading-relaxed max-w-md">
@@ -138,7 +134,7 @@ export default function Footer() {
         {/* Bottom / Secondary */}
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <p className="text-slate-300 leading-relaxed">
-            <span>Merkulove &copy; Axial Construct Template</span>
+            <span>Bluepeak Technology Ltd &copy; Satomen Investment SA</span>
             <span className="mx-2">•</span>
             <span>
               All rights reserved Copyrights <span>{currentYear}</span>
