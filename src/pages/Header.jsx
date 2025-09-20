@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Logo from "../assets/logo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const navigate = useNavigate();
 
-  const toggleDropdown = (name) => {
-    setOpenDropdown(openDropdown === name ? null : name);
+  const toggleDropdown = (item) => {
+    if (!item.children) {
+      navigate(item.href);
+      return setMenuOpen(false);
+    }
+    setOpenDropdown(openDropdown === item.label ? null : name);
   };
 
   return (
@@ -118,56 +123,53 @@ export default function Header() {
             {[
               {
                 label: "Home",
-                children: [
-                  { label: "Home 1", href: "index.html" },
-                  { label: "Home 2", href: "index2.html" },
-                ],
+                href: "/",
               },
-              { label: "About", href: "about.html" },
+              { label: "About", href: "/about" },
               {
                 label: "Services",
                 children: [
-                  { label: "Services", href: "services.html" },
-                  { label: "Single Service", href: "single-service.html" },
-                  { label: "Team", href: "team.html" },
+                  { label: "Services", href: "/services" },
+                  { label: "Single Service", href: "single-/service" },
+                  { label: "Team", href: "/team" },
                 ],
               },
               {
                 label: "Projects",
                 children: [
-                  { label: "Projects 1", href: "projects.html" },
-                  { label: "Projects 2", href: "projects2.html" },
-                  { label: "Single Project", href: "single-project.html" },
+                  { label: "Projects 1", href: "/projects" },
+                  { label: "Projects 2", href: "/projects2" },
+                  { label: "Single Project", href: "single-/project" },
                 ],
               },
               {
                 label: "Blog",
                 children: [
-                  { label: "Blog 1", href: "blog.html" },
-                  { label: "Blog 2", href: "blog2.html" },
-                  { label: "Single Post", href: "single-post.html" },
+                  { label: "Blog 1", href: "/blog" },
+                  { label: "Blog 2", href: "/blog2" },
+                  { label: "Single Post", href: "single-/post" },
                 ],
               },
               {
                 label: "Contacts",
                 children: [
-                  { label: "Contacts 1", href: "contacts.html" },
-                  { label: "Contacts 2", href: "contacts2.html" },
+                  { label: "Contacts 1", href: "/contacts" },
+                  { label: "Contacts 2", href: "/contacts2" },
                 ],
               },
               {
                 label: "Pages",
                 children: [
-                  { label: "FAQ", href: "faq.html" },
-                  { label: "Gallery Grid", href: "gallery-grid.html" },
-                  { label: "Gallery Masonry", href: "gallery-masonry.html" },
-                  { label: "404", href: "404.html" },
+                  { label: "FAQ", href: "/faq" },
+                  { label: "Gallery Grid", href: "gallery-/grid" },
+                  { label: "Gallery Masonry", href: "gallery-/masonry" },
+                  { label: "404", href: "/404" },
                 ],
               },
             ].map((item) => (
               <li key={item.label}>
                 <button
-                  onClick={() => toggleDropdown(item.label)}
+                  onClick={() => toggleDropdown(item)}
                   className="flex w-full items-center justify-between font-semibold hover:text-yellow-400"
                 >
                   {item.label}

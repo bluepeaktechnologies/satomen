@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import React from "react";
 import Logo from "../assets/logo.png";
+import { NavLink } from "react-router-dom";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -71,13 +72,13 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-5">Company</h4>
             <ul className="space-y-3">
               {[
-                { href: "about.html", label: "About", page: "about" },
-                { href: "services.html", label: "Services", page: "services" },
-                { href: "projects.html", label: "Projects", page: "projects" },
+                { href: "/about", label: "About", page: "about" },
+                { href: "/services", label: "Services", page: "services" },
+                { href: "/projects", label: "Projects", page: "projects" },
               ].map((item) => (
                 <li key={item.label} className="group">
-                  <a
-                    href={item.href}
+                  <NavLink
+                    to={item.href}
                     data-page={item.page}
                     className="inline-flex items-center gap-2 text-slate-300 hover:text-yellow-300 transition-colors"
                   >
@@ -85,7 +86,7 @@ export default function Footer() {
                     <span className="underline-offset-4 group-hover:underline">
                       {item.label}
                     </span>
-                  </a>
+                  </NavLink>
                 </li>
               ))}
             </ul>
