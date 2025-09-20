@@ -1,0 +1,214 @@
+import React, { useState } from "react";
+import { ChevronDown, Menu, X } from "lucide-react";
+
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+
+  const toggleDropdown = (name) => {
+    setOpenDropdown(openDropdown === name ? null : name);
+  };
+
+  return (
+    <header className="bg-[#0d2038] text-white sticky top-0 z-50 shadow-md">
+      <div className="container mx-auto flex items-center justify-between px-6 py-4">
+        {/* Logo */}
+        <a href="index.html" className="flex items-center gap-3">
+          <img
+            src="/svg/logo.svg"
+            alt="Axial Construct"
+            className="h-10 w-10"
+          />
+          <span className="text-xl font-bold">
+            Axial <span className="text-green-500">Construct</span>
+          </span>
+        </a>
+
+        {/* Desktop Nav */}
+        <nav className="hidden lg:flex items-center gap-8">
+          {[
+            {
+              label: "Home",
+              href: "index.html",
+              children: [
+                { label: "Home 1", href: "index.html" },
+                { label: "Home 2", href: "index2.html" },
+              ],
+            },
+            { label: "About", href: "about.html" },
+            {
+              label: "Services",
+              href: "services.html",
+              children: [
+                { label: "Services", href: "services.html" },
+                { label: "Single Service", href: "single-service.html" },
+                { label: "Team", href: "team.html" },
+              ],
+            },
+            {
+              label: "Projects",
+              href: "projects.html",
+              children: [
+                { label: "Projects 1", href: "projects.html" },
+                { label: "Projects 2", href: "projects2.html" },
+                { label: "Single Project", href: "single-project.html" },
+              ],
+            },
+            {
+              label: "Blog",
+              href: "blog.html",
+              children: [
+                { label: "Blog 1", href: "blog.html" },
+                { label: "Blog 2", href: "blog2.html" },
+                { label: "Single Post", href: "single-post.html" },
+              ],
+            },
+            {
+              label: "Contacts",
+              href: "contacts.html",
+              children: [
+                { label: "Contacts 1", href: "contacts.html" },
+                { label: "Contacts 2", href: "contacts2.html" },
+              ],
+            },
+            {
+              label: "Pages",
+              href: "#",
+              children: [
+                { label: "FAQ", href: "faq.html" },
+                { label: "Gallery Grid", href: "gallery-grid.html" },
+                { label: "Gallery Masonry", href: "gallery-masonry.html" },
+                { label: "404", href: "404.html" },
+              ],
+            },
+          ].map((item) => (
+            <div key={item.label} className="relative group">
+              <a
+                href={item.href}
+                className="flex items-center gap-1 font-semibold hover:text-yellow-400 transition"
+              >
+                {item.label}
+                {item.children && (
+                  <ChevronDown className="h-4 w-4 text-yellow-400 group-hover:rotate-180 transition-transform" />
+                )}
+              </a>
+              {item.children && (
+                <div className="absolute left-0 top-full mt-2 hidden w-48 rounded-lg bg-white text-slate-800 shadow-lg group-hover:block">
+                  <ul className="py-2">
+                    {item.children.map((child) => (
+                      <li key={child.label}>
+                        <a
+                          href={child.href}
+                          className="block px-4 py-2 hover:bg-yellow-100 hover:text-yellow-600"
+                        >
+                          {child.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          ))}
+        </nav>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="lg:hidden text-white"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle Menu"
+        >
+          {menuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+        </button>
+      </div>
+
+      {/* Mobile Nav */}
+      {menuOpen && (
+        <nav className="lg:hidden bg-[#0d2038] px-6 pb-6">
+          <ul className="space-y-4">
+            {[
+              {
+                label: "Home",
+                children: [
+                  { label: "Home 1", href: "index.html" },
+                  { label: "Home 2", href: "index2.html" },
+                ],
+              },
+              { label: "About", href: "about.html" },
+              {
+                label: "Services",
+                children: [
+                  { label: "Services", href: "services.html" },
+                  { label: "Single Service", href: "single-service.html" },
+                  { label: "Team", href: "team.html" },
+                ],
+              },
+              {
+                label: "Projects",
+                children: [
+                  { label: "Projects 1", href: "projects.html" },
+                  { label: "Projects 2", href: "projects2.html" },
+                  { label: "Single Project", href: "single-project.html" },
+                ],
+              },
+              {
+                label: "Blog",
+                children: [
+                  { label: "Blog 1", href: "blog.html" },
+                  { label: "Blog 2", href: "blog2.html" },
+                  { label: "Single Post", href: "single-post.html" },
+                ],
+              },
+              {
+                label: "Contacts",
+                children: [
+                  { label: "Contacts 1", href: "contacts.html" },
+                  { label: "Contacts 2", href: "contacts2.html" },
+                ],
+              },
+              {
+                label: "Pages",
+                children: [
+                  { label: "FAQ", href: "faq.html" },
+                  { label: "Gallery Grid", href: "gallery-grid.html" },
+                  { label: "Gallery Masonry", href: "gallery-masonry.html" },
+                  { label: "404", href: "404.html" },
+                ],
+              },
+            ].map((item) => (
+              <li key={item.label}>
+                <button
+                  onClick={() => toggleDropdown(item.label)}
+                  className="flex w-full items-center justify-between font-semibold hover:text-yellow-400"
+                >
+                  {item.label}
+                  {item.children && (
+                    <ChevronDown
+                      className={`h-4 w-4 ${
+                        openDropdown === item.label ? "rotate-180" : ""
+                      }`}
+                    />
+                  )}
+                </button>
+                {item.children && openDropdown === item.label && (
+                  <ul className="ml-4 mt-2 space-y-2 border-l border-slate-600 pl-4">
+                    {item.children.map((child) => (
+                      <li key={child.label}>
+                        <a
+                          href={child.href}
+                          className="block hover:text-yellow-400"
+                        >
+                          {child.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </header>
+  );
+}
