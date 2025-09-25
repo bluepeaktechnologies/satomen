@@ -128,7 +128,7 @@ export default function Home() {
                 href="#"
                 className="inline-flex rounded-xl bg-yellow-400 px-5 py-3 font-semibold text-slate-900 hover:bg-yellow-300"
               >
-                Consult now
+                Satomen
               </a>
             </motion.div>
           </motion.div>
