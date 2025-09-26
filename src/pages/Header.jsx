@@ -59,11 +59,7 @@ export default function Header() {
             },
             {
               label: "Contacts",
-              to: "contacts.html",
-              children: [
-                { label: "Contacts 1", to: "contacts.html" },
-                { label: "Contacts 2", to: "contacts2.html" },
-              ],
+              to: "/contact-us",
             },
             {
               label: "Pages",

@@ -4,6 +4,10 @@ import { lazy } from "react";
 export const routes = [
   { path: "/", Component: lazy(() => import("./pages/home/Home")) },
   { path: "/about", Component: lazy(() => import("./pages/about/About")) },
+  {
+    path: "/contact-us",
+    Component: lazy(() => import("./pages/contacts/Contact")),
+  },
 
   // {
   //   path: "/services",
