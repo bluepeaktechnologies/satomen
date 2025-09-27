@@ -1,7 +1,5 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import L from "leaflet";
 import { Facebook, Instagram, Twitter, MessageCircle } from "lucide-react";
 import { address, contact } from "../../constants/colors";
 
@@ -12,16 +10,16 @@ const fadeRight = {
 };
 
 // Fix default Leaflet marker path in bundlers (Vite/Cra)
-const markerIcon = new L.Icon({
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  iconRetinaUrl:
-    "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [0, -30],
-  shadowSize: [41, 41],
-});
+// const markerIcon = new L.Icon({
+//   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+//   iconRetinaUrl:
+//     "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+//   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+//   iconSize: [25, 41],
+//   iconAnchor: [12, 41],
+//   popupAnchor: [0, -30],
+//   shadowSize: [41, 41],
+// });
 
 export default function Contacts() {
   // East Jadynchester – sample coordinates (NYC-ish). Replace if you have exact lat/lng.
