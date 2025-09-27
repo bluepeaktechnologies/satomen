@@ -7,7 +7,7 @@ const defaults = {
   titleB: "Contact Us",
   blurb:
     "We keep movements safe, compliant and on-schedule. If you don’t see what you need here, reach out and our operations team will assist.",
-  cta: { label: "CONTACT US", href: "/contact" },
+  cta: { label: "CONTACT US", href: "/contact-us" },
   faqs: [
     {
       q: "Where are your operations based?",
@@ -30,12 +30,24 @@ const defaults = {
 
 // thicker line icons to match screenshot
 const PlusIcon = ({ className = "" }) => (
-  <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="3">
+  <svg
+    viewBox="0 0 24 24"
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="3"
+  >
     <path d="M12 5v14M5 12h14" />
   </svg>
 );
 const MinusIcon = ({ className = "" }) => (
-  <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="3">
+  <svg
+    viewBox="0 0 24 24"
+    className={className}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="3"
+  >
     <path d="M5 12h14" />
   </svg>
 );
@@ -61,10 +73,13 @@ export default function Faq() {
             </div>
 
             <h2 className="text-4xl font-extrabold leading-[1.08] text-slate-900 sm:text-5xl">
-              {data.titleA} <span className="text-emerald-600">{data.titleB}</span>
+              {data.titleA}{" "}
+              <span className="text-emerald-600">{data.titleB}</span>
             </h2>
 
-            <p className="mt-6 max-w-[55ch] text-[15px] leading-7 text-slate-600">{data.blurb}</p>
+            <p className="mt-6 max-w-[55ch] text-[15px] leading-7 text-slate-600">
+              {data.blurb}
+            </p>
 
             <a
               href={data.cta.href}
@@ -109,10 +124,12 @@ export default function Faq() {
                     {/* content */}
                     <div
                       className={`px-6 pb-6 transition-[max-height] duration-300 ease-in-out ${
-                        isOpen ? "max-h-96" : "max-h-0 overflow-hidden"
+                        isOpen ? "max-h-96" : "hidden max-h-0 overflow-hidden"
                       }`}
                     >
-                      <p className="text-[15px] leading-7 text-slate-700">{item.a}</p>
+                      <p className="text-[15px] leading-7 text-slate-700">
+                        {item.a}
+                      </p>
                     </div>
                   </li>
                 );

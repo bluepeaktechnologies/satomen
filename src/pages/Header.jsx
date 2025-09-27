@@ -33,10 +33,6 @@ export default function Header() {
             {
               label: "Home",
               to: "/",
-              children: [
-                { label: "Home 1", to: "index.html" },
-                { label: "Home 2", to: "index2.html" },
-              ],
             },
             { label: "About", to: "/about" },
             {
