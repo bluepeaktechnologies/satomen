@@ -1,6 +1,11 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Facebook, Instagram, Twitter, MessageCircle } from "lucide-react";
+import emailjs from "emailjs-com";
+
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_KEY;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
 import { address, contact } from "../../constants/colors";
 
 const fadeUp = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } };
@@ -9,21 +14,10 @@ const fadeRight = {
   show: { opacity: 1, x: 0 },
 };
 
-// Fix default Leaflet marker path in bundlers (Vite/Cra)
-// const markerIcon = new L.Icon({
-//   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-//   iconRetinaUrl:
-//     "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-//   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-//   iconSize: [25, 41],
-//   iconAnchor: [12, 41],
-//   popupAnchor: [0, -30],
-//   shadowSize: [41, 41],
-// });
-
 export default function Contacts() {
   // East Jadynchester – sample coordinates (NYC-ish). Replace if you have exact lat/lng.
   const position = useMemo(() => [40.7357, -74.1724], []);
+  const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -34,10 +28,29 @@ export default function Contacts() {
   const onChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    // TODO: hook up to your API
-    console.log("contact form:", form);
+    setIsLoading(true);
+    try {
+      const result = await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        form,
+        PUBLIC_KEY
+      );
+      alert("Email has been sent");
+      setForm({
+        name: "",
+        phone: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+      alert("Failed to send email");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -132,6 +145,7 @@ export default function Contacts() {
                 <button
                   type="submit"
                   className="rounded bg-[#ff9a20] px-6 py-3 text-sm font-bold uppercase tracking-wide text-white hover:bg-yellow-300"
+                  disabled={isLoading}
                 >
                   Send Message
                 </button>
