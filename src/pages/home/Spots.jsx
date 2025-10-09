@@ -1,6 +1,7 @@
 // src/pages/home/Spots.jsx
 import { copy } from "../../content/copy";
 import { useCountUp } from "../../hooks/useCountUp";
+import map from "../../assets/map.jpg";
 
 const defaults = {
   eyebrow: "Where we work",
@@ -67,19 +68,19 @@ export default function Spots() {
           <div className="relative md:col-span-7">
             <div className="overflow-hidden rounded-md border border-slate-200">
               <img
-                src="/map.svg"
+                src={map}
                 alt="Operations map"
                 className="h-[320px] w-full bg-white object-contain sm:h-[420px] md:h-[460px]"
               />
             </div>
 
             {/* Decorative pins — adjust positions to suit your map.svg */}
-            <span className="pointer-events-none absolute left-[18%] top-[22%] inline-block h-4 w-4 rounded-full bg-[#FFC631] shadow"></span>
-            <span className="pointer-events-none absolute left-[36%] top-[40%] inline-block h-4 w-4 rounded-full bg-[#FFC631] shadow"></span>
-            <span className="pointer-events-none absolute left-[55%] top-[36%] inline-block h-4 w-4 rounded-full bg-[#FFC631] shadow"></span>
-            <span className="pointer-events-none absolute left-[70%] top-[55%] inline-block h-4 w-4 rounded-full bg-[#FFC631] shadow"></span>
-            <span className="pointer-events-none absolute left-[28%] top-[65%] inline-block h-4 w-4 rounded-full bg-[#FFC631] shadow"></span>
-            <span className="pointer-events-none absolute left-[48%] top-[72%] inline-block h-4 w-4 rounded-full bg-[#FFC631] shadow"></span>
+            {/* <span className="pointer-events-none absolute left-[18%] top-[22%] inline-block h-4 w-4 rounded-full bg-[#FFC631] shadow"></span>
+            <span className="pointer-events-none absolute left-[36%] top-[40%] inline-block h-4 w-4 rounded-full bg-[#FFC631] shadow"></span> */}
+            {/* <span className="pointer-events-none absolute left-[55%] top-[36%] inline-block h-4 w-4 rounded-full bg-[#FFC631] shadow"></span>
+            <span className="pointer-events-none absolute left-[70%] top-[55%] inline-block h-4 w-4 rounded-full bg-[#FFC631] shadow"></span> */}
+            <span className="pointer-events-none absolute left-[50%] top-[70%] inline-block h-4 w-4 rounded-full bg-[#FFC631] shadow"></span>
+            <span className="pointer-events-none absolute left-[48%] top-[66%] inline-block h-4 w-4 rounded-full bg-[#FFC631] shadow"></span>
           </div>
 
           {/* KPIs + CTA */}

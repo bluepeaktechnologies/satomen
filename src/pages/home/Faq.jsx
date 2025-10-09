@@ -77,7 +77,7 @@ export default function Faq() {
               <span className="text-emerald-600">{data.titleB}</span>
             </h2>
 
-            <p className="mt-6 max-w-[55ch] text-[15px] leading-7 text-slate-600">
+            <p className="mt-6 max-w-[55ch] text-[15px] leading-7 text-slate-600 font-bold">
               {data.blurb}
             </p>
 
