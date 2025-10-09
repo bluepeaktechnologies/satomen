@@ -6,6 +6,8 @@ const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_KEY;
 const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+import PageHeader from '../../layout/PageHeader'
+
 import { address, contact } from "../../constants/colors";
 
 const fadeUp = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } };
