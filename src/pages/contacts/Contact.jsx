@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
+import hero from "../../assets/vessel.jpg";
 
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_KEY;
