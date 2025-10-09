@@ -2,12 +2,21 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
 import hero from "../../assets/vessel.jpg";
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Facebook,
+  Instagram,
+  Twitter,
+  MessageCircle,
+} from "lucide-react";
 
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_KEY;
 const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-import PageHeader from '../../layout/PageHeader'
+import PageHeader from "../../layout/PageHeader";
 
 import { address, contact } from "../../constants/colors";
 
