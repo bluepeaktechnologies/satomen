@@ -40,3 +40,29 @@
 .read-the-docs {
   color: #888;
 }
+
+/* === Swiper Custom Styling === */
+
+/* Pagination dots */
+.swiper-pagination-bullet {
+  background-color: #d1d5db; /* gray-300 */
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #16a34a; /* Tailwind green-600 */
+}
+
+/* Navigation arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #facc15; /* Tailwind yellow-400 */
+  font-weight: bold;
+  transition: transform 0.2s ease-in-out;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  transform: scale(1.2);
+  color: #eab308; /* Tailwind yellow-500 */
+}

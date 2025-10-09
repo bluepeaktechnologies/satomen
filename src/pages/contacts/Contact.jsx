@@ -52,212 +52,177 @@ export default function Contacts() {
       setIsLoading(false);
     }
   };
-
   return (
-    <main className="bg-white text-slate-900">
-      {/* Hero / breadcrumb */}
-      <section className="relative overflow-hidden bg-[#0b213b] text-white">
-        <div className="container mx-auto px-6 py-12">
-          <motion.span
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="text-sm font-semibold tracking-wider"
-          >
-            WE CREATE THE WORLD
-          </motion.span>
-          <motion.h1
-            variants={fadeRight}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="mt-2 text-5xl font-extrabold"
-          >
-            Contact Us
-          </motion.h1>
+    <div className="bg-white">
+      {/* ✅ Shared Page Header */}
+      <PageHeader
+        title="Contact Us"
+        subtitle="We’re Here to Help"
+        background={hero}
+      />
 
-          <nav className="mt-4 flex items-center gap-4 text-slate-200/80">
-            <a className="hover:text-white" href="/">
-              Home
-            </a>
-            <span className="h-0.5 w-8 bg-[#ff9a20] inline-block align-middle" />
-            <span>Contact</span>
-          </nav>
-        </div>
-      </section>
-
-      {/* Content */}
-      <section className="md:py-14">
-        <div className="container mx-auto grid gap-10 px-6 lg:grid-cols-[1fr_420px]">
-          {/* Left: form */}
-          <div>
-            <div className="mb-6">
-              <div className="mb-3 flex items-center gap-3">
-                <span className="h-0.5 w-10 bg-[#ff9a20]" />
-                <span className="text-sm font-semibold uppercase tracking-wide text-slate-600">
+      {/* ✅ Contact Section (restored eyebrow + headline) */}
+      <section id="contact" className="bg-white py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
+            {/* LEFT – FORM */}
+            <div className="md:col-span-7">
+              {/* eyebrow */}
+              <div className="mb-5 flex items-center gap-3">
+                <span className="h-0.5 w-8 bg-[#FFC631]" />
+                <span className="text-[12px] uppercase tracking-[0.2em] text-[#0a2741]/70 font-semibold">
                   Contact Us
                 </span>
               </div>
-              <h2 className="text-4xl font-extrabold leading-tight">
-                Get <span className="text-[#189cf8]">In Touch</span>
-              </h2>
-              <p className="mt-3 max-w-2xl text-slate-600">
-                Pellentesque sit amet porttitor eget dolor morbi non arcu. Vitae
-                justo eget magna fermentum iaculis eu non
-              </p>
-            </div>
 
-            <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
-              <input
-                className="col-span-2 sm:col-span-1 rounded border border-slate-300 px-4 py-3 outline-none focus:border-slate-800"
-                placeholder="Full name"
-                name="name"
-                value={form.name}
-                onChange={onChange}
-                required
-              />
-              <input
-                className="col-span-2 sm:col-span-1 rounded border border-slate-300 px-4 py-3 outline-none focus:border-slate-800"
-                placeholder="Phone"
-                name="phone"
-                value={form.phone}
-                onChange={onChange}
-              />
-              <input
-                className="col-span-2 rounded border border-slate-300 px-4 py-3 outline-none focus:border-slate-800"
-                placeholder="Email Address"
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={onChange}
-                required
-              />
-              <textarea
-                className="col-span-2 min-h-[160px] rounded border border-slate-300 px-4 py-3 outline-none focus:border-slate-800 disabled:bg-gray-400"
-                placeholder="Message"
-                name="message"
-                value={form.message}
-                onChange={onChange}
-                required
-              />
-              <div className="col-span-2">
+              {/* headline */}
+              <h2 className="mb-8 text-4xl font-extrabold leading-tight text-[#0a2741] sm:text-5xl">
+                Get In
+                <span className="text-[#28c391]"> Touch</span>
+              </h2>
+
+              {/* form */}
+              <form className="space-y-6 w-full">
+                {/* first row: name / phone */}
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 w-full">
+                  <input
+                    type="text"
+                    placeholder="Full name"
+                    className="h-12 w-[120%] md:w-[120%] rounded-md border border-slate-200 px-4 text-[15px] outline-none focus:border-[#0a2741] focus:ring-2 focus:ring-[#0a2741]/10"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Phone"
+                    className="h-12 w-[120%] md:w-[155%] ml-20 rounded-md border border-slate-200 px-4 text-[15px] outline-none focus:border-[#0a2741] focus:ring-2 focus:ring-[#0a2741]/10"
+                  />
+                </div>
+
+                {/* email full width */}
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  className="h-12 w-[120%] md:w-[140%] rounded-md border border-slate-200 px-4 text-[15px] outline-none focus:border-[#0a2741] focus:ring-2 focus:ring-[#0a2741]/10"
+                />
+
+                {/* message full width */}
+                <textarea
+                  placeholder="Message"
+                  rows={6}
+                  className="w-[120%] md:w-[140%] rounded-md border border-slate-200 p-4 text-[15px] outline-none focus:border-[#0a2741] focus:ring-2 focus:ring-[#0a2741]/10"
+                />
+
                 <button
                   type="submit"
                   className="rounded bg-[#ff9a20] px-6 py-3 text-sm font-bold uppercase tracking-wide text-white hover:bg-yellow-300"
                   disabled={isLoading}
                 >
-                  Send Message
+                  SEND MESSAGE
                 </button>
+              </form>
+            </div>
+
+            {/* RIGHT – INFO CARD */}
+            <aside className="col-span-12 md:col-span-5 md:col-start-12">
+              <h3 className="text-2xl font-extrabold text-[#0a2741] sm:text-3xl">
+                Are You Going to
+                <br /> Implement
+                <br /> a Project?
+              </h3>
+
+              <div className="mt-8 space-y-7 text-[#0a2741]">
+                {/* Address */}
+                <div>
+                  <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-[#0a2741]/70">
+                    Address
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <MapPin className="mt-0.5 h-5 w-5 text-[#0a2741]/70" />
+                    <p className="leading-6">
+                      LM 5, Atras De Parque National Carratera De Aeropurto
+                      Bioko Norte
+                      <br /> Malabo, Guinea Equatorial.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Email */}
+                <div>
+                  <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-[#0a2741]/70">
+                    Email
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Mail className="mt-0.5 h-5 w-5 text-[#0a2741]/70" />
+                    <div className="flex flex-col">
+                      <a
+                        href="mailto:info@satomen.com"
+                        className="hover:underline"
+                      >
+                        info@satomen.com
+                      </a>
+                      <a
+                        href="mailto:support@satomen.com"
+                        className="hover:underline"
+                      >
+                        support@satomen.com
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Phone */}
+                <div>
+                  <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-[#0a2741]/70">
+                    Phone
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Phone className="mt-0.5 h-5 w-5 text-[#0a2741]/70" />
+                    <div className="flex flex-col">
+                      <a href="tel:+240555517792" className="hover:underline">
+                        +240 555 517 792
+                      </a>
+                      <a href="tel:+240555517792" className="hover:underline">
+                        +240 555 517 792
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Social Icons */}
+                <div className="mt-4 flex items-center gap-4">
+                  <a
+                    href="#"
+                    aria-label="Facebook"
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#0a2741] text-white"
+                  >
+                    <Facebook className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="#"
+                    aria-label="Instagram"
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#0a2741] text-white"
+                  >
+                    <Instagram className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="#"
+                    aria-label="Twitter / X"
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#0a2741] text-white"
+                  >
+                    <Twitter className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="#"
+                    aria-label="WhatsApp"
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#0a2741] text-white"
+                  >
+                    <MessageCircle className="h-5 w-5" />
+                  </a>
+                </div>
               </div>
-            </form>
+            </aside>
           </div>
-
-          {/* Right: contact info panel */}
-          <aside className="rounded-xl border border-slate-200 bg-slate-50 p-8">
-            <InfoGroup
-              label="Address"
-              content={
-                <>
-                  {address.line1}
-                  <br />
-                  {address.line2}
-                </>
-              }
-            />
-            <InfoGroup
-              label="Email"
-              content={
-                <div className="flex flex-col gap-3">
-                  <a
-                    className="hover:underline text-blue-500 hover:text-blue-800"
-                    href={`mailto:${contact.email1}`}
-                  >
-                    {contact.email1}
-                  </a>
-                  <a
-                    className="hover:underline text-blue-500 hover:text-blue-800"
-                    href={`mailto:${contact.email2}`}
-                  >
-                    {contact.email2}
-                  </a>
-                </div>
-              }
-            />
-            <InfoGroup
-              label="Phone"
-              content={
-                <div className="flex flex-col">
-                  <a
-                    className="hover:underline hover:text-blue-500"
-                    href={`tel:${contact.phone1.replace(" ", "")}`}
-                  >
-                    {contact.phone1}
-                  </a>
-                  <a
-                    className="hover:underline hover:text-blue-500"
-                    href={`tel:${contact.phone2.replace(" ", "")}`}
-                  >
-                    {contact.phone2}
-                  </a>
-                </div>
-              }
-            />
-
-            {/* <div className="mt-8 flex items-center gap-4">
-              <Social icon={<Facebook />} aria="Facebook" />
-              <Social icon={<Instagram />} aria="Instagram" />
-              <Social icon={<Twitter />} aria="Twitter" />
-              <Social icon={<MessageCircle />} aria="WhatsApp" />
-            </div> */}
-          </aside>
         </div>
       </section>
-
-      {/* Map */}
-      {/* <section className="relative">
-        <div className="h-[520px] w-full">
-          <MapContainer
-            center={position}
-            zoom={12}
-            scrollWheelZoom={false}
-            className="h-full w-full"
-          >
-            <TileLayer
-              attribution="&copy; OpenStreetMap"
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={position} icon={markerIcon}>
-              <Popup>
-                Axial Construct <br /> 2047 Cyrus Viaduct East, Jadynchester
-              </Popup>
-            </Marker>
-          </MapContainer>
-        </div>
-      </section> */}
-    </main>
-  );
-}
-
-function InfoGroup({ label, content }) {
-  return (
-    <div className="mb-8">
-      <div className="mb-2 text-md font-semibold uppercase tracking-wider text-slate-500">
-        {label}
-      </div>
-      <div className="text-slate-900">{content}</div>
     </div>
-  );
-}
-
-function Social({ icon, aria }) {
-  return (
-    <a
-      href="#"
-      aria-label={aria}
-      className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-900 text-white hover:bg-slate-700"
-    >
-      <span className="[&>svg]:h-5 [&>svg]:w-5">{icon}</span>
-    </a>
   );
 }

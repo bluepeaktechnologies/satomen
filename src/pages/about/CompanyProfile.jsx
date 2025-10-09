@@ -1,39 +1,82 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  ArrowRight,
-  CheckCircle2,
-  Quote,
-  Star,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2, Quote, Star } from "lucide-react";
 import hero from "../../assets/vessel.jpg";
+import PageHeader from "../../layout/PageHeader"; // ✅ Shared Page Header
+
+
+// ---------- DATA ----------
 
 const bullets = [
-  "Making lives easier",
-  "Get every solution right here",
-  "Innovation and creativity",
-  "Fine engineering only with us",
+  "Integrated petroleum supply chain expertise",
+  "End-to-end marine, road and terminal logistics",
+  "HSSE-first operational framework",
+  "Market intelligence & trading advisory",
 ];
 
 const services = [
   {
-    title: "Construction Management",
+    title: "Integrated Petroleum Supply",
     copy:
-      "Vitae ultricies leo integer malesuada nunc vel. Molestie ac feugiat sed lectus vestibulummattis ullamcorper velit. Viverra aliquet eget sit amet tellus cras adipiscing.",
+      "Strategic procurement and distribution of white petroleum products (PMS, AGO, DPK) with strict quality assurance. We optimise sourcing, documentation, and delivery schedules to secure supply continuity for commercial and industrial partners.",
     features: [
-      "Making lives easier",
-      "Get every solution right here",
-      "Innovation and creativity",
+      "Quality-assured product specifications",
+      "Contract and spot supply capabilities",
+      "Regulatory and customs documentation",
     ],
     image: hero,
   },
   {
-    title: "Process Engineering",
+    title: "Marine & Inland Logistics",
     copy:
-      "Vitae ultricies leo integer malesuada nunc vel. Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. Viverra aliquet eget sit amet tellus cras adipiscing.",
+      "Comprehensive marine logistics and inland distribution across coastal and riverine corridors. From vessel coordination to last-mile road despatch, our logistics network is engineered for secure, timely fuel movements.",
     features: [
-      "Making lives easier",
-      "Get every solution right here",
-      "Innovation and creativity",
+      "Vessel chartering & berth coordination",
+      "Trucking fleets with tamper-evident seals",
+      "Live tracking and milestone reporting",
+    ],
+    image: hero,
+  },
+  {
+    title: "Terminal & Storage Management",
+    copy:
+      "Professional terminal operations and inventory management across partnered depots. Our teams ensure product integrity through calibrated measurement, sealed sampling and robust stock reconciliation processes.",
+    features: [
+      "Tank farm operations & custody transfer",
+      "Metering, sampling & QA/QC trails",
+      "Inventory optimisation and reconciliation",
+    ],
+    image: hero,
+  },
+  {
+    title: "Oilfield & Offshore Support",
+    copy:
+      "Operational support for upstream and offshore projects, including offshore logistics, equipment supply, and specialist manpower. Our solutions minimise downtime and support continuous production operations.",
+    features: [
+      "Platform logistics & personnel transfers",
+      "Equipment mobilisation and spares supply",
+      "Coordination with rig and field operators",
+    ],
+    image: hero,
+  },
+  {
+    title: "Energy Trading & Procurement Advisory",
+    copy:
+      "Market intelligence, risk management, and trading advisory services tailored for fuel buyers and distributors. We combine regional market insights with structured procurement to optimise total landed cost.",
+    features: [
+      "Price risk management strategies",
+      "Market analysis and tender execution",
+      "Structured and spot trading capabilities",
+    ],
+    image: hero,
+  },
+  {
+    title: "HSSE & Environmental Management",
+    copy:
+      "A safety-first culture underpinned by certified HSSE systems, incident prevention, and environmental stewardship. We deliver compliant operations that protect personnel, assets, and the environment.",
+    features: [
+      "HSE audits and permit management",
+      "Emergency response planning & training",
+      "Sustainability initiatives and reporting",
     ],
     image: hero,
   },
@@ -42,22 +85,30 @@ const services = [
 const testimonials = [
   {
     text:
-      "Comm odo quis imperdiet massa tincidunt nunc. Volutpat odio facilisis mauris sit amet. Mauris commodo quis imperdiet massa tincidunt.",
-    name: "Benjamin Norris",
-    role: "BUSINESS ANALYST",
+      "Satomen delivered a complex coastal transfer within a tight window while maintaining full HSSE compliance. Their logistics coordination and communications were exceptional.",
+    name: "Amina Yusuf",
+    role: "Logistics Manager, Regional Energy Co.",
   },
   {
     text:
-      "Curabitur vitae nunc sed velit dignissim sodales ut. Et ligula ullamcorper malesuada proin pellentesque diam volutpat commodo.",
-    name: "Lisa Smith",
-    role: "MANAGER",
+      "Their procurement team provided clear market insight and structured sourcing that reduced our landed cost and secured continuity across high-demand periods.",
+    name: "David Mensah",
+    role: "Head of Procurement, Industrial Manufacturing",
   },
 ];
+
+// ---------- PAGE COMPONENT ----------
 
 export default function About() {
   return (
     <div className="bg-white">
-      <Hero />
+      {/* ✅ Shared Header Component */}
+      <PageHeader
+        title="Company Profile"
+        subtitle="Integrated Oil & Gas Services"
+        background={hero}
+      />
+
       <WhoWeAre />
       <QuoteBanner />
       <SpotlightServices />
@@ -68,38 +119,7 @@ export default function About() {
   );
 }
 
-/* ---------- Sections ---------- */
-
-function Hero() {
-  return (
-    <section className="relative overflow-hidden bg-[#0a2741]">
-      <div className="absolute inset-0 opacity-10">
-        <img
-          src={hero}
-          alt="Decor"
-          className="h-full w-full object-cover"
-          loading="eager"
-        />
-      </div>
-
-      <div className="relative mx-auto max-w-7xl px-4 py-14 sm:py-16">
-        <span className="text-[11px] uppercase tracking-[0.2em] text-white/70">
-          Building communities
-        </span>
-        <h1 className="mt-3 text-4xl font-extrabold text-white sm:text-5xl">
-          About
-        </h1>
-
-        {/* Breadcrumb */}
-        <nav className="mt-4 text-sm text-white/70">
-          <span className="hover:text-white/90">Home</span>
-          <span className="mx-2">—</span>
-          <span className="text-white">About</span>
-        </nav>
-      </div>
-    </section>
-  );
-}
+// ---------- SECTIONS ----------
 
 function WhoWeAre() {
   return (
@@ -112,14 +132,21 @@ function WhoWeAre() {
               Who we are
             </span>
           </div>
+
           <h2 className="text-3xl font-extrabold text-slate-900 sm:text-4xl">
-            Bringing{" "}
-            <span className="text-[#28c391]">Your Ideas</span> and Innovations
-            to Life
+            Delivering <span className="text-[#28c391]">Secure</span> and
+            Efficient Energy Logistics
           </h2>
-          <p className="mt-4 max-w-prose text-slate-600">
-            Our civil and structural team is committed to providing sustainable,
-            creative & efficient engineering solutions for our communities.
+
+          <p className="mt-4 max-w-prose text-slate-600 font-semibold text-justify">
+            Satomen Investment SA was incorporated in 2023 to provide industry
+            leading petroleum supply and integrated logistics solutions. Our
+            management team brings over 75 years of cumulative experience across
+            fuel trading, downstream operations, marine logistics and HSSE
+            systems. We design resilient supply chains that prioritise product
+            integrity, safety and environmental stewardship.  We are an integrated oil & gas services provider combining petroleum
+          supply, marine logistics, storage operations and HSSE-led field support
+          to deliver reliable energy solutions across coastal and inland markets.
           </p>
 
           <ul className="mt-6 space-y-3">
@@ -133,16 +160,16 @@ function WhoWeAre() {
 
           <a
             href="#contact"
-            className="mt-7 inline-flex items-center gap-2 rounded bg-[#FFC631] px-5 py-3 font-semibold text-[#0a2741] shadow-sm hover:brightness-95"
+            className="mt-7 inline-flex items-center gap-2 rounded bg-[#FFC631] px-5 py-3 font-semibold text-[#06243a] shadow-sm hover:brightness-95"
           >
-            Consult now <ArrowRight className="h-4 w-4" />
+            Request a proposal <ArrowRight className="h-4 w-4" />
           </a>
         </div>
 
         <div className="overflow-hidden rounded-xl shadow-lg">
           <img
             src={hero}
-            alt="Team collaborating"
+            alt="Satomen vessel and terminal operations"
             className="h-full w-full object-cover"
           />
         </div>
@@ -153,14 +180,15 @@ function WhoWeAre() {
 
 function QuoteBanner() {
   return (
-    <section className="bg-[#0a2741] py-16">
+    <section className="bg-[#06243a] py-16">
       <div className="mx-auto max-w-7xl px-4">
         <p className="max-w-5xl text-3xl font-extrabold leading-snug text-white sm:text-4xl">
-          Pulvinar elementum integer enim neque volutpat ac. Amet dictum sit
-          amet justo donec enim diam vulputate ut. Egestas sed sed risus pretium
-          quam. Viverra accumsan in nisl nisi scelerisque eu
+          "We combine market insight, operational excellence and HSSE-driven
+          processes to keep fuel flowing — safely and reliably."
         </p>
-        <p className="mt-8 font-semibold text-[#FFC631]">BENJAMIN MILLER</p>
+        <p className="mt-8 font-semibold text-[#FFC631]">
+          — SATOMEN INVESTMENT SA
+        </p>
       </div>
     </section>
   );
@@ -174,12 +202,19 @@ function SpotlightServices() {
           <div className="mb-2 flex items-center gap-3">
             <span className="h-0.5 w-8 bg-[#FFC631]" />
             <span className="text-[12px] font-bold uppercase tracking-[0.2em] text-slate-600">
-              Just feel the future
+              Our capabilities
             </span>
           </div>
           <h2 className="text-3xl font-extrabold text-slate-900 sm:text-4xl">
             Spotlight <span className="text-[#28c391]">Services</span>
           </h2>
+
+          <p className="mt-3 max-w-3xl text-slate-600 font-bold leading-relaxed text-justify">
+            We operate across the downstream value chain — from structured fuel
+            procurement and trading to terminal management, marine logistics and
+            oilfield support — all underpinned by strict HSSE and QA/QC
+            controls.
+          </p>
         </div>
 
         <div className="space-y-14">
@@ -212,7 +247,10 @@ function SpotlightServices() {
                   ))}
                 </ul>
 
-                <button className="mt-6 inline-flex items-center gap-2 rounded bg-[#FFC631] px-4 py-2 font-semibold text-[#0a2741] shadow-sm hover:brightness-95">
+                <button
+                  className="mt-6 inline-flex items-center gap-2 rounded bg-[#FFC631] px-4 py-2 font-semibold text-[#06243a] shadow-sm hover:brightness-95"
+                  aria-label={`Read more about ${s.title}`}
+                >
                   Read more <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
@@ -227,24 +265,24 @@ function SpotlightServices() {
 function WhyChooseUs() {
   const cards = [
     {
-      title: "We Develop Unique Projects",
+      title: "Operational Reliability",
       body:
-        "Senectus et netus et malesuada. Nunc pulvinar sapien et ligula ullamcorper malesuada proin.",
+        "Robust processes and proven delivery performance across marine, road and terminal operations ensure consistent supply to our clients.",
     },
     {
-      title: "We Value Convenience and Functionality",
+      title: "HSSE-Driven Culture",
       body:
-        "Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.",
+        "Certified HSSE systems, regular training and incident prevention programs are central to our operations.",
     },
     {
-      title: "Experience Lets Us Implement Ideas",
+      title: "Market & Technical Expertise",
       body:
-        "Viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat.",
+        "Deep experience in fuel trading, downstream logistics and terminal management provides clients with dependable advisory and execution.",
     },
     {
-      title: "We Offer Innovative Technologies",
+      title: "Customer-Centric Delivery",
       body:
-        "Consectetur adipiscing elit pellentesque habitant. Arcu felis bibendum.",
+        "Tailored solutions, transparent reporting and KPI-driven service levels align our delivery with client commercial objectives.",
     },
   ];
 
@@ -259,15 +297,21 @@ function WhyChooseUs() {
             </span>
           </div>
           <h2 className="text-3xl font-extrabold text-slate-900 sm:text-4xl">
-            <span className="text-[#28c391]">Design</span> Future with
-            Excellence
+            Trusted Partner for{" "}
+            <span className="text-[#28c391]">Energy Solutions</span>
           </h2>
+
+          <p className="mt-4 text-slate-600">
+            Satomen blends operational proficiency, industry knowledge and a
+            health-and-safety first mindset to deliver measurable outcomes for
+            fuel buyers, distributors and project operators.
+          </p>
 
           <ul className="mt-6 space-y-3">
             {[
-              "Building the future with ideas",
-              "Designing future with excellence",
-              "Discovering possibility concrete",
+              "End-to-end logistics and supply capabilities",
+              "Clear compliance & regulatory governance",
+              "Dedicated account and operations teams",
             ].map((t) => (
               <li key={t} className="flex items-start gap-3">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 text-[#28c391]" />
@@ -284,11 +328,12 @@ function WhyChooseUs() {
                 key={c.title}
                 className="rounded-2xl border border-slate-200 p-6 shadow-sm"
               >
-                <div className="mb-3 text-[#0a2741]">
-                  {/* simple gear-ish icon substitute */}
+                <div className="mb-3 text-[#06243a]">
                   <div className="h-8 w-8 rounded-full border-2 border-current" />
                 </div>
-                <h4 className="text-lg font-bold text-slate-900">{c.title}</h4>
+                <h4 className="text-lg font-bold text-slate-900">
+                  {c.title}
+                </h4>
                 <p className="mt-2 text-slate-600">{c.body}</p>
               </div>
             ))}
@@ -361,9 +406,12 @@ function Testimonials() {
                 style={{ width: `${100 / testimonials.length}%` }}
               >
                 <div className="rounded-2xl border border-slate-200 p-6 shadow-sm md:p-8">
-                  <div className="mb-3 flex gap-1">
+                  <div className="mb-3 flex gap-1" aria-hidden>
                     {Array.from({ length: 5 }).map((_, k) => (
-                      <Star key={k} className="h-5 w-5 fill-[#FFC631] text-[#FFC631]" />
+                      <Star
+                        key={k}
+                        className="h-5 w-5 fill-[#FFC631] text-[#FFC631]"
+                      />
                     ))}
                   </div>
                   <p className="text-slate-700">{t.text}</p>
@@ -383,17 +431,19 @@ function Testimonials() {
             ))}
           </div>
 
-          {/* mobile controls */}
+          {/* Mobile controls */}
           <div className="mt-4 flex justify-center gap-2 md:hidden">
             <button
               onClick={() => go(-1)}
               className="rounded-full border border-slate-300 px-3 py-1 text-slate-700"
+              aria-label="Previous testimonial"
             >
               ‹
             </button>
             <button
               onClick={() => go(1)}
               className="rounded-full border border-slate-300 px-3 py-1 text-slate-700"
+              aria-label="Next testimonial"
             >
               ›
             </button>
@@ -406,16 +456,23 @@ function Testimonials() {
 
 function CtaStrip() {
   return (
-    <section id="contact" className="bg-[#0a2741] py-10">
+    <section id="contact" className="bg-[#06243a] py-10">
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-4 sm:flex-row sm:items-center">
-        <h3 className="text-xl font-bold text-white">
-          Are you going to implement a project?
-        </h3>
+        <div>
+          <h3 className="text-xl font-bold text-white">
+            Ready to secure your fuel supply and logistics?
+          </h3>
+          <p className="mt-1 text-sm text-white/80">
+            Contact us for tailored solutions in petroleum supply, marine
+            logistics and HSSE-led operations.
+          </p>
+        </div>
+
         <a
           href="/contact-us"
-          className="inline-flex items-center gap-2 rounded bg-[#FFC631] px-5 py-2 font-semibold text-[#0a2741] hover:brightness-95"
+          className="inline-flex items-center gap-2 rounded bg-[#FFC631] px-5 py-2 font-semibold text-[#06243a] hover:brightness-95"
         >
-          Contact us <ArrowRight className="h-4 w-4" />
+          Contact our team <ArrowRight className="h-4 w-4" />
         </a>
       </div>
     </section>

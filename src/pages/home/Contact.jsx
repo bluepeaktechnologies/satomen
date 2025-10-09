@@ -15,40 +15,41 @@ export default function Contact() {
               </span>
             </div>
 
-            {/* headline like your screenshot */}
+            {/* headline */}
             <h2 className="mb-8 text-4xl font-extrabold leading-tight text-[#0a2741] sm:text-5xl">
               Do You Have
               <br className="hidden sm:block" /> any{" "}
               <span className="text-[#28c391]">Questions?</span>
             </h2>
 
-            <form className="space-y-6">
+            <form className="space-y-6 w-full">
               {/* first row: name / phone */}
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 w-full">
                 <input
                   type="text"
                   placeholder="Full name"
-                  className="h-12 w-full rounded-md border border-slate-200 px-4 text-[15px] outline-none focus:border-[#0a2741] focus:ring-2 focus:ring-[#0a2741]/10"
+                  className="h-12 w-[120%] md:w-[120%] rounded-md border border-slate-200 px-4 text-[15px] outline-none focus:border-[#0a2741] focus:ring-2 focus:ring-[#0a2741]/10"
                 />
                 <input
                   type="text"
                   placeholder="Phone"
-                  className="h-12 w-full rounded-md border border-slate-200 px-4 text-[15px] outline-none focus:border-[#0a2741] focus:ring-2 focus:ring-[#0a2741]/10"
+                  className="h-12 w-[120%] md:w-[155%] ml-20 rounded-md border border-slate-200 px-4 text-[15px] outline-none focus:border-[#0a2741] focus:ring-2 focus:ring-[#0a2741]/10"
                 />
               </div>
 
               {/* email full width */}
-              <input
-                type="email"
-                placeholder="Email Address"
-                className="h-12 w-full rounded-md border border-slate-200 px-4 text-[15px] outline-none focus:border-[#0a2741] focus:ring-2 focus:ring-[#0a2741]/10"
-              />
+             <input
+                  type="email"
+                  placeholder="Email Address"
+                  className="h-12 w-[120%] md:w-[140%] rounded-md border border-slate-200 px-4 text-[15px] outline-none focus:border-[#0a2741] focus:ring-2 focus:ring-[#0a2741]/10"
+                />
+
 
               {/* message full width */}
               <textarea
                 placeholder="Message"
                 rows={6}
-                className="w-full rounded-md border border-slate-200 p-4 text-[15px] outline-none focus:border-[#0a2741] focus:ring-2 focus:ring-[#0a2741]/10"
+                className="w-[120%] md:w-[140%] rounded-md border border-slate-200 p-4 text-[15px] outline-none focus:border-[#0a2741] focus:ring-2 focus:ring-[#0a2741]/10"
               />
 
               <button
@@ -61,7 +62,7 @@ export default function Contact() {
           </div>
 
           {/* RIGHT – INFO CARD */}
-          <aside className="md:col-span-5">
+          <aside className="col-span-12 md:col-span-5 md:col-start-12">
             <h3 className="text-2xl font-extrabold text-[#0a2741] sm:text-3xl">
               Are You Going to
               <br /> Implement
@@ -77,8 +78,8 @@ export default function Contact() {
                 <div className="flex items-start gap-3">
                   <MapPin className="mt-0.5 h-5 w-5 text-[#0a2741]/70" />
                   <p className="leading-6">
-                    2047 Cyrus Viaduct East
-                    <br /> Jadynchester
+                    LM 5, Atras De Parque National Carratera De Aeropurto Bioko Norte
+                    <br /> Malabo Guinea Equatorial.
                   </p>
                 </div>
               </div>
@@ -109,11 +110,11 @@ export default function Contact() {
                 <div className="flex items-start gap-3">
                   <Phone className="mt-0.5 h-5 w-5 text-[#0a2741]/70" />
                   <div className="flex flex-col">
-                    <a href="tel:+13136453395" className="hover:underline">
-                      1 - 313 - 645 - 3395
+                    <a href="tel:+240 555 517 792" className="hover:underline">
+                      +240 555 517 792
                     </a>
-                    <a href="tel:+14699702609" className="hover:underline">
-                      1 - 469 - 970 - 2609
+                    <a href="tel:+240 555 517 792" className="hover:underline">
+                      +240 555 517 792
                     </a>
                   </div>
                 </div>
