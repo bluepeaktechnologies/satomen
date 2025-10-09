@@ -1,14 +1,57 @@
-import {
-  Mail,
-  MapPin,
-  Phone,
-  Facebook,
-  Instagram,
-  Twitter,
-  MessageCircle,
-} from "lucide-react";
-import hero from "../../assets/vessel.jpg";
-import PageHeader from "../../layout/PageHeader"; // ✅ shared header
+import { useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import emailjs from "emailjs-com";
+
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_KEY;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+import { address, contact } from "../../constants/colors";
+
+const fadeUp = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } };
+const fadeRight = {
+  hidden: { opacity: 0, x: -24 },
+  show: { opacity: 1, x: 0 },
+};
+
+export default function Contacts() {
+  // East Jadynchester – sample coordinates (NYC-ish). Replace if you have exact lat/lng.
+  const position = useMemo(() => [40.7357, -74.1724], []);
+  const [isLoading, setIsLoading] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
+
+  const onChange = (e) =>
+    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      const result = await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        form,
+        PUBLIC_KEY
+      );
+      alert("Email has been sent");
+      setForm({
+        name: "",
+        phone: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+      alert("Failed to send email");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
 export default function Contact() {
   return (
@@ -71,8 +114,9 @@ export default function Contact() {
                 />
 
                 <button
-                  type="button"
-                  className="inline-flex rounded-md !bg-[#FFC631] px-6 py-3 text-sm font-bold text-[#0a2741] shadow-sm hover:brightness-95"
+                  type="submit"
+                  className="rounded bg-[#ff9a20] px-6 py-3 text-sm font-bold uppercase tracking-wide text-white hover:bg-yellow-300"
+                  disabled={isLoading}
                 >
                   SEND MESSAGE
                 </button>

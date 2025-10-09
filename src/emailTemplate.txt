@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <title>Thank You</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <style>
+    /* CLIENT RESETS */
+    html, body { margin:0 !important; padding:0 !important; height:100% !important; width:100% !important; }
+    * { -ms-text-size-adjust:100%; -webkit-text-size-adjust:100%; }
+    table, td { mso-table-lspace:0pt !important; mso-table-rspace:0pt !important; }
+    img { -ms-interpolation-mode:bicubic; border:0; outline:none; text-decoration:none; }
+    a { text-decoration:none; }
+    /* iOS BLUE LINKS */
+    a[x-apple-data-detectors] { color:inherit !important; text-decoration:none !important; }
+    /* GMAIL DARK MODE */
+    @media (prefers-color-scheme: dark) {
+      .bg { background:#0f172a !important; }
+      .card { background:#111827 !important; }
+      .text { color:#e5e7eb !important; }
+      .muted { color:#9ca3af !important; }
+      .btn { color:#111827 !important; }
+    }
+    /* MOBILE */
+    @media screen and (max-width:600px) {
+      .container { width:100% !important; }
+      .px { padding-left:20px !important; padding-right:20px !important; }
+      .logo { width:140px !important; height:auto !important; }
+    }
+  </style>
+</head>
+<body class="bg" style="background:#f4f6f8;">
+
+  <!-- Preheader (hidden preview text) -->
+  <div style="display:none; max-height:0; overflow:hidden; mso-hide:all; font-size:1px; line-height:1px; color:#ffffff;">
+    Thanks for contacting Satomen Investment SA — we’ve received your message and will get back to you shortly.
+  </div>
+
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+      <td align="center" style="padding:24px;">
+        <!-- Outer container -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" class="container">
+          <!-- HEADER -->
+          <tr>
+            <td class="px" style="background:#0ea5e9; padding:28px 32px; border-radius:14px 14px 0 0; text-align:left;">
+              <div style="font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;">
+               <img class="logo" src="https://raw.githubusercontent.com/bluepeaktechnologies/satomen/refs/heads/main/src/assets/logo_black.png" width="160" alt="Satomen Investment SA logo"
+                           style="display:block; height:auto; border:0;">
+                <div style="font-size:24px; font-weight:700; line-height:1.3; color:#ffffff;">
+                  Thanks for reaching out!
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <!-- CARD / BODY -->
+          <tr>
+            <td class="card px" style="background:#ffffff; padding:28px 32px; border-radius:0 0 14px 14px;">
+              <div class="text" style="font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif; color:#111827; font-size:16px; line-height:1.6;">
+                <p style="margin:0 0 14px;">Hi,</p>
+                <p style="margin:0 0 14px;">
+                  We’ve received your message and a member of our team will get back to you.
+                </p>
+                <p style="margin:0 0 18px;">
+                  Here’s a quick summary of what you sent:
+                </p>
+
+                <!-- Summary block -->
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f3f4f6; border-radius:10px;">
+                  <tr>
+                    <td style="padding:16px 18px; font-size:14px; color:#374151;">
+                      <div style="margin-bottom:8px;">
+                        <strong>Subject:</strong> {{subject||General enquiry}}
+                      </div>
+                      <div style="white-space:pre-wrap;">
+                        <strong>Message:</strong>
+                        <div style="margin-top:6px; color:#111827;">{{message}}</div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- CTA -->
+                <div style="text-align:center; margin:26px 0 8px;">
+                  <!--[if mso]>
+                  <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
+                    href="{{ticket_url||{{website_url}}}}" style="height:44px;v-text-anchor:middle;width:220px;" arcsize="12%"
+                    stroke="f" fillcolor="#0ea5e9">
+                    <w:anchorlock/>
+                    <center style="color:#ffffff;font-family:Segoe UI,Helvetica,Arial,sans-serif;font-size:16px;font-weight:700;">
+                      View Your Request
+                    </center>
+                  </v:roundrect>
+                  <![endif]-->
+                  <!--[if !mso]><!-- -->
+                  <a class="btn"
+                     href="https://www.satomeninvestmentsa.net"
+                     style="display:inline-block; padding:12px 20px; background:#0ea5e9; color:#ffffff; font-weight:700; border-radius:8px;">
+                    View Your Request
+                  </a>
+                  <!--<![endif]-->
+                </div>
+
+                <p class="muted" style="margin:18px 0 0; font-size:13px; color:#6b7280;">
+                  If this wasn’t you, please reply to this email or contact us at <a href="mailto:mdimari@satomeninvestmentsa.ner"}>Support Email.
+                </p>
+              </div>
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td style="padding:18px 10px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td align="center" style="padding:10px 0;">
+                    <a href="https://www.satomeninvestmentsa.net/" target="_blank" rel="noopener">
+                      <img class="logo" src="https://raw.githubusercontent.com/bluepeaktechnologies/satomen/refs/heads/main/src/assets/logo_black.png" width="160" alt="Satomen Investment SA logo"
+                           style="display:block; height:auto; border:0;">
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" class="muted" style="font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif; color:#6b7280; font-size:12px; line-height:1.6;">
+                    <div><strong>Satomen Investment SA</strong></div>
+                    <div>{{address_line1}} {{address_line2}}</div>
+                    <div>{{city}}, {{state}} {{postal_code}}, {{country}}</div>
+                    <div>
+                      <a href="tel:{{phone}}" style="color:#6b7280;">{{phone}}</a> &nbsp;•&nbsp;
+                      <a href="mailto:mdimari@satomeninvestmentsa.net" style="color:#6b7280;">Support Email</a> &nbsp;•&nbsp;
+                      <a href="https://www.satomeninvestmentsa.net/" style="color:#6b7280;">Our Website</a>
+                    </div>
+                    <div style="margin-top:6px;">
+                      © 2025 Satomen Investment SA. All rights reserved.
+                    </div>
+                    <div style="margin-top:4px;">
+                      <a href="https://www.satomeninvestmentsa.net/" style="color:#9ca3af;">Privacy</a>
+                      &nbsp;•&nbsp;
+                      <a href="https://www.satomeninvestmentsa.net/" style="color:#9ca3af;">Terms</a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td height="30"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <!-- /container -->
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

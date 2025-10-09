@@ -7,8 +7,7 @@ const defaults = {
   title: "Our Team Delivers Reliable Petroleum Logistics",
   cta: "OUR TEAM",
   video: { src: "/video/ops.mp4", poster: "/team-cover.jpg" }, // put files in /public
-  body:
-    "We coordinate movements end-to-end with disciplined planning, safe handling and precise documentation. Every shift is built around control, transparency and uptime.",
+  body: "We coordinate movements end-to-end with disciplined planning, safe handling and precise documentation. Every shift is built around control, transparency and uptime.",
   bullets: [
     "Field-tested execution and clear ownership at every handover",
     "Calibrated measurement and auditable QA/QC trail",
@@ -73,29 +72,15 @@ export default function Team() {
         {/* Media */}
         <div className="mt-8 overflow-hidden rounded-md">
           <div className="relative aspect-video w-full bg-slate-700">
-            <video
-              ref={vRef}
-              className="h-full w-full object-cover"
-              src={t.video.src}
-              poster={t.video.poster}
-              preload="metadata"
-            />
-            {/* Play/Pause */}
-            <button
-              type="button"
-              onClick={togglePlay}
-              className="absolute left-4 top-4 inline-flex items-center rounded-full bg-white/90 px-3 py-2 text-sm font-semibold text-slate-900 backdrop-blur hover:bg-white"
-            >
-              {playing ? (
-                <>
-                  <PauseIcon className="mr-2 h-4 w-4" /> Pause
-                </>
-              ) : (
-                <>
-                  <PlayIcon className="mr-2 h-4 w-4" /> Play
-                </>
-              )}
-            </button>
+            <iframe
+              className="absolute inset-0 w-full h-full"
+              src="https://www.youtube.com/embed/D1Zl-_o64xg?si=S_NbYC5GMnUgTv4u"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
 
@@ -163,7 +148,13 @@ function PauseIcon({ className = "" }) {
 }
 function CheckIcon({ className = "" }) {
   return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2">
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
       <path d="M20 6 9 17l-5-5" />
     </svg>
   );
