@@ -52,8 +52,6 @@ export default function Contacts() {
       setIsLoading(false);
     }
   };
-
-export default function Contact() {
   return (
     <div className="bg-white">
       {/* ✅ Shared Page Header */}
