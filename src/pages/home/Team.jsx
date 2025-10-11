@@ -15,8 +15,7 @@ const defaults = {
     "Zero-harm mindset with continuous improvement",
   ],
   quote: {
-    text:
-      "Our commitment is simple: safe, compliant and dependable movement—every time.",
+    text: "Our commitment is simple: safe, compliant and dependable movement—every time.",
     name: "Mohammed Dimari",
     role: "Vice President",
     avatar: "/author.jpg",
@@ -70,7 +69,7 @@ export default function Team() {
         </div>
 
         {/* Media */}
-        <div className="mt-8 overflow-hidden rounded-md">
+        {/* <div className="mt-8 overflow-hidden rounded-md">
           <div className="relative aspect-video w-full bg-slate-700">
             <iframe
               className="absolute inset-0 w-full h-full"
@@ -82,19 +81,23 @@ export default function Team() {
               allowFullScreen
             ></iframe>
           </div>
-        </div>
+        </div> */}
 
         {/* Content row */}
         <div className="mt-10 grid gap-10 md:grid-cols-12">
           {/* Left: paragraph + checklist */}
           <div className="md:col-span-6">
-            <p className="mt-5 max-w-xl text-base leading-7 text-white/80 font-bold">{t.body}</p>
+            <p className="mt-5 max-w-xl text-base leading-7 text-white/80 font-bold">
+              {t.body}
+            </p>
 
             <ul className="mt-6 space-y-3">
               {t.bullets.map((b, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <CheckIcon className="mt-1 h-4 w-4 text-[#FFC631]" />
-                  <span className="mt-5 max-w-xl text-base leading-7 text-white/80 font-bold">{b}</span>
+                  <span className="mt-5 max-w-xl text-base leading-7 text-white/80 font-bold">
+                    {b}
+                  </span>
                 </li>
               ))}
             </ul>

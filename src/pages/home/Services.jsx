@@ -34,16 +34,20 @@ export default function Services() {
                 {s.n}
               </div>
 
-              <h3 className="mt-8 text-xl font-semibold text-slate-900">{s.title}</h3>
+              <h3 className="mt-8 text-xl font-semibold text-slate-900">
+                {s.title}
+              </h3>
 
-              <p className="mt-3 text-[15px] leading-7 text-slate-600">{s.desc}</p>
-
+              <p className="mt-3 text-[15px] leading-7 text-slate-600">
+                {s.desc}
+              </p>
+              {/* 
               <a
                 href="#service-details"
                 className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 hover:text-emerald-700"
               >
                 DETAILS <span aria-hidden>→</span>
-              </a>
+              </a> */}
             </li>
           ))}
         </ul>
