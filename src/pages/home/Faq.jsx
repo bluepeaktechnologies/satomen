@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { copy } from "../../content/copy";
 
 const defaults = {
@@ -28,75 +29,119 @@ const defaults = {
   ],
 };
 
-// thicker line icons to match screenshot
-const PlusIcon = ({ className = "" }) => (
-  <svg
-    viewBox="0 0 24 24"
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="3"
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
+const stagger = {
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+// Inline SVG icons (to keep animation fluid)
+const PlusMinusIcon = ({ isOpen }) => (
+  <motion.div
+    initial={false}
+    animate={{ rotate: isOpen ? 180 : 0 }}
+    transition={{ duration: 0.3, ease: "easeInOut" }}
+    className="h-6 w-6 text-emerald-600"
   >
-    <path d="M12 5v14M5 12h14" />
-  </svg>
-);
-const MinusIcon = ({ className = "" }) => (
-  <svg
-    viewBox="0 0 24 24"
-    className={className}
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="3"
-  >
-    <path d="M5 12h14" />
-  </svg>
+    {isOpen ? (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="3"
+        className="w-full h-full"
+      >
+        <path d="M5 12h14" />
+      </svg>
+    ) : (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="3"
+        className="w-full h-full"
+      >
+        <path d="M12 5v14M5 12h14" />
+      </svg>
+    )}
+  </motion.div>
 );
 
 export default function Faq() {
   const data = copy.faq ?? defaults;
-
-  // open the SECOND item by default to mirror your screenshot
   const [open, setOpen] = useState(1);
   const toggle = (i) => setOpen((prev) => (prev === i ? -1 : i));
 
   return (
-    <section className="bg-white">
+    <motion.section
+      id="faq"
+      className="bg-white"
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true }}
+      variants={fadeUp}
+    >
       <div className="mx-auto max-w-7xl px-4 py-16 lg:py-20">
-        <div className="grid gap-10 md:grid-cols-12">
+        <motion.div
+          className="grid gap-10 md:grid-cols-12"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
           {/* LEFT: title + copy + CTA */}
-          <div className="md:col-span-6">
-            <div className="mb-4 flex items-center gap-3">
+          <motion.div className="md:col-span-6" variants={fadeUp}>
+            <motion.div
+              className="mb-4 flex items-center gap-3"
+              variants={fadeUp}
+            >
               <span className="h-0.5 w-8 bg-[#FFC631]" />
               <span className="text-[12px] uppercase tracking-[0.2em] text-slate-600">
                 {data.eyebrow}
               </span>
-            </div>
+            </motion.div>
 
-            <h2 className="text-4xl font-extrabold leading-[1.08] text-slate-900 sm:text-5xl">
+            <motion.h2
+              className="text-4xl font-extrabold leading-[1.08] text-slate-900 sm:text-5xl"
+              variants={fadeUp}
+            >
               {data.titleA}{" "}
               <span className="text-emerald-600">{data.titleB}</span>
-            </h2>
+            </motion.h2>
 
-            <p className="mt-6 max-w-[55ch] text-[15px] leading-7 text-slate-600 font-bold">
+            <motion.p
+              className="mt-6 max-w-[55ch] text-[15px] leading-7 text-slate-600 font-bold"
+              variants={fadeUp}
+            >
               {data.blurb}
-            </p>
+            </motion.p>
 
-            <a
+            <motion.a
               href={data.cta.href}
+              variants={fadeUp}
+              whileHover={{ scale: 1.05 }}
               className="mt-8 inline-flex rounded-md bg-[#FFC631] px-6 py-3 text-sm font-bold text-[#0a2741] shadow-sm hover:brightness-95"
             >
               {data.cta.label}
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
 
           {/* RIGHT: accordion */}
-          <div className="md:col-span-6">
+          <motion.div className="md:col-span-6" variants={fadeUp}>
             <ul className="space-y-5">
               {data.faqs.map((item, i) => {
                 const isOpen = open === i;
                 return (
-                  <li
+                  <motion.li
                     key={item.q}
+                    variants={fadeUp}
                     className={`rounded-md border-2 bg-white transition-colors ${
                       isOpen ? "border-emerald-400" : "border-slate-200"
                     }`}
@@ -114,30 +159,33 @@ export default function Faq() {
                       >
                         {item.q}
                       </span>
-                      {isOpen ? (
-                        <MinusIcon className="h-6 w-6 text-emerald-600" />
-                      ) : (
-                        <PlusIcon className="h-6 w-6 text-slate-500" />
-                      )}
+
+                      {/* animated icon */}
+                      <PlusMinusIcon isOpen={isOpen} />
                     </button>
 
                     {/* content */}
-                    <div
-                      className={`px-6 pb-6 transition-[max-height] duration-300 ease-in-out ${
-                        isOpen ? "max-h-96" : "hidden max-h-0 overflow-hidden"
-                      }`}
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={
+                        isOpen
+                          ? { opacity: 1, height: "auto" }
+                          : { opacity: 0, height: 0 }
+                      }
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="px-6 pb-6 overflow-hidden"
                     >
                       <p className="text-[15px] leading-7 text-slate-700">
                         {item.a}
                       </p>
-                    </div>
-                  </li>
+                    </motion.div>
+                  </motion.li>
                 );
               })}
             </ul>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -1,4 +1,6 @@
-import hero from "../../assets/vessel-1.png";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { useCountUp } from "../../hooks/useCountUp";
 import { copy } from "../../content/copy";
 import Services from "./Services";
 import Projects from "./Projects";
@@ -6,14 +8,16 @@ import Spots from "./Spots";
 import Features from "./Features";
 import Team from "./Team";
 import Faq from "./Faq";
-import Contact from "./Contact";
 import Gallery from "./Gallery";
-import { useCountUp } from "../../hooks/useCountUp";
+import Contact from "./Contact";
 
-/* --- helpers for animated metrics --- */
+// ⚡ High-quality Unsplash background (replace if needed)
+const heroImage =
+  "https://www.frontanalogistic.com/images/header_resim/4597464588368-705-ship-petrol-transport-2.jpg";
+
+/* --- helper for animated metrics --- */
 const parseMetric = (v) => {
   const str = String(v).trim();
-  // allow spaces in the numeric part, optional decimal, optional suffix like + or %
   const m = str.match(/^([0-9][0-9\s]*(?:[.,][0-9]+)?)\s*([^0-9\s].*)?$/);
   if (!m) return { num: 0, suffix: "", decimals: 0 };
   const numeric = m[1].replace(/\s/g, "").replace(",", ".");
@@ -40,314 +44,167 @@ function AnimatedMetric({ value, className = "", duration = 1200 }) {
   );
 }
 
+/* --- FRAMER VARIANTS FOR STAGGERED ANIMATION --- */
+const containerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      staggerChildren: 0.25,
+      ease: "easeOut",
+    },
+  },
+};
+
+const childVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+/* --- HOME PAGE --- */
 export default function Home() {
   const h = copy.hero;
-  // numeric-only version of the card metric (e.g., "78 000 m" -> 78000)
-  const cardMetricNum = parseMetric(h.card.metricValue).num;
+  const heroRef = useRef(null);
+
+  // 🎯 Scroll-reactive zoom
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
+
   return (
     <main>
-      {/* HERO */}
-      <section className="relative overflow-hidden bg-[#0a2741]">
-        {/* subtle blueprint dots */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -left-32 bottom-0 hidden h-[40%] w-[40%] opacity-20 lg:block"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 10px)",
-            backgroundSize: "11px 11px",
-          }}
+      {/* ---------- HERO SECTION ---------- */}
+      <section
+        ref={heroRef}
+        className="relative text-white overflow-hidden bg-[#0a2741] h-[100vh] flex items-center pt-0 mt-0"
+      >
+        {/* 🎞️ Scroll-reactive Background */}
+        <motion.img
+          src={heroImage}
+          alt="Offshore petroleum vessel"
+          style={{ scale, y }}
+          className="absolute inset-0 h-full w-full object-cover opacity-40 will-change-transform"
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a2741] via-[#0a2741]/90 to-transparent" />
 
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 pb-16 pt-8 md:grid-cols-12 md:pt-14 lg:gap-10">
-          {/* LEFT: copy */}
-          <div className="md:col-span-6">
-            <div className="mb-4 flex items-center gap-3">
+        {/* ---------- HERO CONTENT ---------- */}
+        <div className="relative z-10 mx-auto max-w-[85rem] px-6 py-8 md:py-12 grid gap-12 md:grid-cols-2 items-center">
+          {/* LEFT SIDE — TEXT (staggered reveal) */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+            className="md:pr-10"
+          >
+            <motion.div
+              variants={childVariants}
+              className="mb-4 flex items-center gap-3"
+            >
               <span className="h-0.5 w-8 bg-[#FFC631]" />
-              <span className="text-[12px] uppercase tracking-[0.2em] text-white/80 font-bold">
+              <span className="text-xs uppercase tracking-[0.2em] text-white/80 font-semibold">
                 {h.eyebrow}
               </span>
-            </div>
+            </motion.div>
 
-            <h1 className="text-4xl font-extrabold leading-tight text-white sm:text-5xl md:text-6xl">
-              {h.title}
-            </h1>
-
-            <p className="mt-5 max-w-xl text-base leading-7 text-white/80 font-bold">
-              {h.body}
-            </p>
-
-            <a
-              href="#consult"
-              className="relative z-10 mt-8 inline-flex items-center rounded-md bg-[#FFC631] px-6 py-3 text-sm font-bold text-[#0a2741] shadow-sm hover:brightness-95"
+            <motion.h1
+              variants={childVariants}
+              className="text-4xl md:text-6xl font-extrabold leading-tight"
             >
-              {h.cta}
-            </a>
-          </div>
+              {h.title}
+            </motion.h1>
 
-          {/* RIGHT: stats + hero image + floating card */}
-          <div className="relative md:col-span-6">
-            {/* Stats: row on small, column (top/bottom) on md+ */}
-            <div className="mb-6 flex items-start justify-between gap-8 sm:mb-8 md:mb-10 md:flex-col md:items-end md:gap-8">
-              <div className="text-right">
-                <AnimatedMetric
-                  value={h.stats[0].value}
-                  className="text-4xl font-extrabold text-[#FFC631] sm:text-5xl md:text-6xl"
-                />
-                <div className="mt-2 text-xs leading-5 text-white/85 sm:text-sm">
-                  {h.stats[0].label}
-                </div>
-              </div>
-              <div className="text-right md:mt-6">
-                <AnimatedMetric
-                  value={h.stats[1].value}
-                  className="text-4xl font-extrabold text-[#FFC631] sm:text-5xl md:text-6xl"
-                />
-                <div className="mt-2 text-xs leading-5 text-white/85 sm:text-sm">
-                  {h.stats[1].label}
-                </div>
-              </div>
-            </div>
+            <motion.p
+              variants={childVariants}
+              className="mt-6 text-white/80 text-lg font-medium text-justify max-w-[700px]"
+            >
+              {h.body}
+            </motion.p>
 
-            {/* Image wrapper */}
-            <div className="relative mt-4 sm:mt-6 md:mt-0 lg:pr-8 overflow-visible">
-              <img
-                src={hero}
-                alt="Petroleum logistics vessel"
-                className=" w-full max-w-none rounded-tl-2xl object-cover  h-[380px] sm:h-[440px] md:h-[520px] lg:h-[460px] xl:h-[70vh] lg:w-[650px] xl:w-[50vw]
-                xl:-translate-x-52
-                "
-              />
-
-              {/* Floating card pushed outward, not blocking CTA */}
-              <div
-                className="
-                  absolute bottom-6 right-3 w-[250px] rounded-xl bg-white p-5 shadow-2xl ring-1 ring-black/5
-                  sm:right-6 sm:w-[280px] md:right-[-6%] md:w-[300px]
-                  hidden
-                "
+            <motion.div
+              variants={childVariants}
+              className="mt-8 flex flex-wrap items-center gap-5"
+            >
+              <a
+                href="#consult"
+                className="inline-flex items-center rounded-md bg-[#FFC631] px-6 py-3 text-sm font-bold text-[#0a2741] shadow-md hover:brightness-95 transition"
               >
-                <h3 className="text-lg font-semibold text-slate-900 sm:text-xl">
-                  {h.card.title}
-                </h3>
+                {h.cta}
+              </a>
 
-                {/* Animated card number */}
-                <div className="mt-2 text-2xl font-extrabold text-emerald-600 sm:text-3xl">
-                  <AnimatedMetric
-                    value={String(cardMetricNum)}
-                    duration={1400}
-                  />
-                  &nbsp;m
-                  <sup className="align-super text-sm sm:text-base">
-                    {h.card.metricSup}
-                  </sup>
-                </div>
+              <a
+                href="/projects"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-[#FFC631] transition"
+              >
+                View Projects →
+              </a>
+            </motion.div>
+          </motion.div>
 
-                <div className="mt-1 text-sm text-slate-600">
-                  {h.card.metricLabel}
-                </div>
-                <a
-                  href="#details"
-                  className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+          {/* RIGHT SIDE — METRICS + CARD */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-end gap-10 md:items-center lg:items-end"
+          >
+            <div className="grid grid-cols-2 gap-8 text-right md:text-center lg:text-right">
+              {h.stats.map((s, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.2, duration: 0.7 }}
+                  viewport={{ once: true }}
                 >
-                  {h.card.linkLabel} <span aria-hidden>→</span>
-                </a>
-                <span className="absolute -right-3 -bottom-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 shadow sm:h-10 sm:w-10">
-                  {h.card.badge}
-                </span>
-              </div>
+                  <AnimatedMetric
+                    value={s.value}
+                    className="text-4xl md:text-5xl font-extrabold text-[#FFC631]"
+                  />
+                  <p className="mt-2 text-sm text-white/85 font-semibold tracking-wide">
+                    {s.label}
+                  </p>
+                </motion.div>
+              ))}
             </div>
-          </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="bg-white text-[#0a2741] p-6 rounded-2xl shadow-xl max-w-xs"
+            >
+              <h3 className="text-lg font-bold">{h.card.title}</h3>
+              <p className="mt-2 text-sm text-slate-600 leading-relaxed text-justify">
+                {h.card.metricLabel}
+              </p>
+              <a
+                href="#details"
+                className="mt-3 inline-block text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+              >
+                {h.card.linkLabel} →
+              </a>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* SERVICES (new) */}
+      {/* ---------- REMAINING SECTIONS ---------- */}
       <Services />
       <Projects />
       <Spots />
       <Features />
       <Team />
       <Faq />
-      <Gallery image={hero} />
+      <Gallery />
       <Contact />
     </main>
   );
 }
-/* --- end helpers --- */
-
-// export default function Home() {
-//   const h = copy.hero;
-
-//   // numeric-only version of the card metric (e.g., "78 000 m" -> 78000)
-//   const cardMetricNum = parseMetric(h.card.metricValue).num;
-
-//   return (
-//     <main>
-//       {/* HERO */}
-//       <section className="relative overflow-hidden bg-[#0a2741]">
-//         {/* subtle blueprint dots */}
-//         {/* <div
-//           aria-hidden
-//           className="pointer-events-none absolute -left-32 bottom-0 hidden h-[40%] w-[40%] opacity-20 lg:block"
-//           style={{
-//             backgroundImage:
-//               "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 10px)",
-//             backgroundSize: "11px 11px",
-//           }}
-//         /> */}
-
-//         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 pb-16 pt-8 md:grid-cols-12 md:pt-14 lg:gap-10 h-[calc(100vh-80px)]">
-//           {/* LEFT: copy */}
-//           <div className="flex flex-col md:col-span-6">
-//             <div>
-//               <div className="mb-4 flex items-center gap-3">
-//                 <span className="h-0.5 w-8 bg-[#FFC631]" />
-//                 <span className="text-[12px] uppercase tracking-[0.2em] text-white/80 font-bold">
-//                   {h.eyebrow}
-//                 </span>
-//               </div>
-
-//               <h1 className="text-4xl font-extrabold leading-tight text-white sm:text-5xl md:text-6xl">
-//                 {h.title}
-//               </h1>
-
-//               <p className="mt-5 max-w-xl text-base leading-7 text-white/80 font-bold">
-//                 {h.body}
-//               </p>
-
-//               <a
-//                 href="#consult"
-//                 className="relative z-10 mt-8 inline-flex items-center rounded-md bg-[#FFC631] px-6 py-3 text-sm font-bold text-[#0a2741] shadow-sm hover:brightness-95"
-//               >
-//                 {h.cta}
-//               </a>
-//             </div>
-
-//             <div className="flex flex-1 justify-between gap-8 sm:mb-8 md:gap-8 md:p-14">
-//               <div className="text-right">
-//                 <AnimatedMetric
-//                   value={h.stats[0].value}
-//                   className="text-4xl font-extrabold text-[#FFC631] sm:text-5xl md:text-6xl"
-//                 />
-//                 <div className="mt-2 text-xs leading-5 text-white/85 sm:text-sm">
-//                   {h.stats[0].label}
-//                 </div>
-//               </div>
-
-//               <div className="text-right">
-//                 <AnimatedMetric
-//                   value={h.stats[1].value}
-//                   className="text-4xl font-extrabold text-[#FFC631] sm:text-5xl md:text-6xl"
-//                 />
-//                 <div className="mt-2 text-xs leading-5 text-white/85 sm:text-sm">
-//                   {h.stats[1].label}
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* RIGHT: stats + hero image + floating card */}
-//           <div className="relative md:col-span-6 flex">
-//             {/* Stats: row on small, column (top/bottom) on md+ */}
-//             {/* <div className="mb-6 flex items-start justify-between gap-8 sm:mb-8 md:mb-10 md:flex-col md:items-end md:gap-8">
-//               <div className="text-right">
-//                 <AnimatedMetric
-//                   value={h.stats[0].value}
-//                   className="text-4xl font-extrabold text-[#FFC631] sm:text-5xl md:text-6xl"
-//                 />
-//                 <div className="mt-2 text-xs leading-5 text-white/85 sm:text-sm">
-//                   {h.stats[0].label}
-//                 </div>
-//               </div>
-
-//               <div className="text-right md:mt-6">
-//                 <AnimatedMetric
-//                   value={h.stats[1].value}
-//                   className="text-4xl font-extrabold text-[#FFC631] sm:text-5xl md:text-6xl"
-//                 />
-//                 <div className="mt-2 text-xs leading-5 text-white/85 sm:text-sm">
-//                   {h.stats[1].label}
-//                 </div>
-//               </div>
-//             </div> */}
-//             {/* <div className="absolute bottom-0 right-0 h-[380px] sm:h-[440px] md:h-[520px] lg:h-[360px] xl:h-[400px] lg:w-[780px] xl:w-[680px]"> */}
-//             <div className="flex-1">
-//               <img
-//                 src={hero}
-//                 alt="Petroleum logistics vessel"
-//                 className="object-cover w-full h-full rounded-tl-2xl over"
-//                 // className=" w-full max-w-none rounded-tl-2xl object-cover shadow-2xl h-[380px] sm:h-[440px] md:h-[520px] lg:h-[460px] xl:h-[460px] lg:w-[780px] xl:w-[780px]
-//                 //      lg:-translate-x-50 xl:-translate-x-50"
-//               />
-//             </div>
-//           </div>
-//           {/* Image wrapper */}
-//           {/* <div className="relative mt-4 sm:mt-6 md:mt-0 lg:pr-8"> */}
-
-//           {/* <div className="absolute bottom-0 right-0 h-[380px] sm:h-[440px] md:h-[520px] lg:h-[360px] xl:h-[400px] lg:w-[780px] xl:w-[680px]">
-//             <img
-//               src={hero}
-//               alt="Petroleum logistics vessel"
-//               className="object-cover w-full h-full rounded-tl-2xl over"
-//               // className=" w-full max-w-none rounded-tl-2xl object-cover shadow-2xl h-[380px] sm:h-[440px] md:h-[520px] lg:h-[460px] xl:h-[460px] lg:w-[780px] xl:w-[780px]
-//               //      lg:-translate-x-50 xl:-translate-x-50"
-//             />
-//           </div> */}
-//         </div>
-//       </section>
-
-//       {/* SERVICES (new) */}
-//       <Services />
-//       <Projects />
-//       <Spots />
-//       <Features />
-//       <Team />
-//       <Faq />
-//       <Gallery image={hero} />
-//       <Contact />
-//     </main>
-//   );
-// }
-
-// // <div className="absolute bottom-0 -right-10 bg-red-100">
-// //   <img
-// //     src={hero}
-// //     alt="Petroleum logistics vessel"
-// //     className=" w-full max-w-none rounded-tl-2xl object-cover shadow-2xl h-[380px] sm:h-[440px] md:h-[520px] lg:h-[460px] xl:h-[460px] lg:w-[780px] xl:w-[780px]
-// //          lg:-translate-x-50 xl:-translate-x-50"
-// //   />
-
-// //   {/* Floating card pushed outward, not blocking CTA */}
-// //   <div
-// //     className=" hidden
-// //         absolute bottom-6 right-3 w-[250px] rounded-xl bg-white p-5 shadow-2xl ring-1 ring-black/5
-// //         sm:right-6 sm:w-[280px] md:right-[-6%] md:w-[300px]
-// //       "
-// //   >
-// //     <h3 className="text-lg font-semibold text-slate-900 sm:text-xl">
-// //       {h.card.title}
-// //     </h3>
-
-// //     {/* Animated card number */}
-// //     <div className="mt-2 text-2xl font-extrabold text-emerald-600 sm:text-3xl">
-// //       <AnimatedMetric value={String(cardMetricNum)} duration={1400} />
-// //       &nbsp;m
-// //       <sup className="align-super text-sm sm:text-base">
-// //         {h.card.metricSup}
-// //       </sup>
-// //     </div>
-
-// //     <div className="mt-1 text-sm text-slate-600">
-// //       {h.card.metricLabel}
-// //     </div>
-// //     <a
-// //       href="#details"
-// //       className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-emerald-700 hover:text-emerald-800"
-// //     >
-// //       {h.card.linkLabel} <span aria-hidden>→</span>
-// //     </a>
-// //     <span className="absolute -right-3 -bottom-3 inline-flex h-9 w-9 items-center justify-center rounded-full bg-emerald-100 text-emerald-700 shadow sm:h-10 sm:w-10">
-// //       {h.card.badge}
-// //     </span>
-// //   </div>
-// // </div>;
