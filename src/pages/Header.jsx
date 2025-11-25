@@ -27,21 +27,23 @@ export default function Header() {
         { label: "Team", to: "/about/team" },
       ],
     },
-    {label: "SERVICES", to: "/services"},
+    { label: "SERVICES", to: "/services" },
 
     {
-      label: "PROJECTS", to: "/projects", },
-
-    { label: "CONTACTS", to: "/contact-us" },
-    {
-      label: "PAGES",
-      children: [
-        { label: "FAQ", to: "/faq" },
-        { label: "Gallery Grid", to: "/gallery-grid" },
-        { label: "Gallery Masonry", to: "/gallery-masonry" },
-        { label: "404", to: "/404" },
-      ],
+      label: "PROJECTS",
+      to: "/projects",
     },
+
+    { label: "CONTACT US", to: "/contact-us" },
+    // {
+    //   label: "PAGES",
+    //   children: [
+    //     { label: "FAQ", to: "/faq" },
+    //     { label: "Gallery Grid", to: "/gallery-grid" },
+    //     { label: "Gallery Masonry", to: "/gallery-masonry" },
+    //     { label: "404", to: "/404" },
+    //   ],
+    // },
   ];
 
   return (
