@@ -11,11 +11,29 @@ import React from "react";
 import Logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
 
+import { partners } from "../store/partners";
+import { a, div } from "framer-motion/client";
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0d2038] text-slate-100">
+    <footer className="bg-[#0d2038] text-slate-100 pt-5">
+      <h1 className="pl-10 text-2xl font-bold capitalize">our Partners</h1>
+      <div className="flex justify-between p-10 cursor-pointer">
+        {partners.map((p) => (
+          <a
+            href={p.websiteurl}
+            target="_blank"
+            className="hover:text-blue-400 transform hover:scale-110 hover:ease-in-out transition-all"
+          >
+            <div className=" flex flex-col items-center">
+              <img src={p.logo} alt={p.name} className="w-14 sm:w-24" />
+              <h2 className="hover:text-blue-400 hidden md:block">{p.name}</h2>
+            </div>
+          </a>
+        ))}
+      </div>
       <div className="container mx-auto px-6 py-8">
         {/* Top / Main */}
         <div className="grid gap-10 md:gap-12 lg:gap-16 md:grid-cols-2 lg:grid-cols-4">
