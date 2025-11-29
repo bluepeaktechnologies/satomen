@@ -36,16 +36,14 @@ function Leadership() {
       name: "Felix Cense Okojie",
       title: "President / Chief Executive Officer",
       image: presidentImg,
-      bio: `Mr. Felix Cense Okojie, a native of Ishan from Irua Edo State... 
-(Trimmed for brevity; use your full text here)`,
+      bio: `Mr. Felix Cense Okojie, a native of Ishan from Irua Edo State Edo State of Nigeria, graduated from Federal Polytechnic Idah, with an HND in Business Administration. He and some investors founded INDO-AFRICA VENTURES, as one of the Directors, in 1999. Mr. Felix Okojie also co-founded in 2002, Satomen Investment Limited (SIL) with a company registration number 458254. SIL, is an indigenous company, into the importation of Industrial Machinery, Bottling plants, Pure Water Machines, etc. In the year 2015, the company ventured into Oil and Gas Business, providing Offshore Marine and Logistics Services. The company principally offers marine logistics and vessel charter services and operates various types of specialized vessels for support services in the Oil and Gas Sector. The Company is also registered as a Shipping Company / Agent. Mr Felix and other directors also co-founded on 2023 SATOMEN Investment SA ( SISA) Malabo , Equatorial Guinea. This international company was established to effectively and efficiently participate in oil and gas value chain , and deliver value to its key stakeholders .`,
       linkedin: "#",
     },
     {
       name: "Mohammed Ali Dimari",
       title: "Vice President / Executive Director",
       image: vicePresidentImg,
-      bio: `Mr. Mohammed Ali Dimari is an Economist... 
-(Trimmed for brevity; use your full text here)`,
+      bio: `Mr. Mohammed Ali Dimari is an Economist, Planning and Development 1992, and B.Sc. Economics 1987, degrees from the prestigious University of Maiduguri, Borno State. He was also a recipient of a Certificate on International Petroleum Certificate Management Program, IHRDC, Boston, USA, and a Diploma in Fiscal Policy and Management of Oil & Gas Assets, PETRAD, NORWAY. Mr Mohammed Dimari, is a Group Executive Director, Upstream Business Development and Strategy / NNPC Limited Relations (GED, BDS/NNPCL Relations), Masters Energy Oil and Gas Limited, Nigeria with effect from October 2019 to date. He and his colleagues are responsible for throughput service contact with NNPCL, white products sourcing, new business development, ensuring effective stakeholder relations management, etc. Prior to this role, he served for over 24 years with the defunct NNPC in different capacities which include; Team lead, Materials Management, Production Sharing Contracts (PSC), NAPIMS, Corporate Planning & Strategy, and Corporate Group Human Resources Departments respectively, where significant value additions were realized through cost optimization especially with ABO field development project.`,
       linkedin: "#",
     },
   ];

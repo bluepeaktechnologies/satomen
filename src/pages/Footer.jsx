@@ -19,20 +19,26 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#0d2038] text-slate-100 pt-5">
-      <h1 className="pl-10 text-2xl font-bold capitalize">our Partners</h1>
-      <div className="flex justify-between p-10 cursor-pointer">
-        {partners.map((p) => (
-          <a
-            href={p.websiteurl}
-            target="_blank"
-            className="hover:text-blue-400 transform hover:scale-110 hover:ease-in-out transition-all"
-          >
-            <div className=" flex flex-col items-center">
-              <img src={p.logo} alt={p.name} className="w-14 sm:w-24" />
-              <h2 className="hover:text-blue-400 hidden md:block">{p.name}</h2>
-            </div>
-          </a>
-        ))}
+      <h1 className="pl-10 pb-10 text-2xl font-bold capitalize">
+        our Partners
+      </h1>
+      <div className="overflow-hidden">
+        <div className="flex gap-10 animate-slide justify-evenly flex-wrap">
+          {partners.concat(partners.slice(0, 2)).map((p, i) => (
+            <a
+              key={i}
+              href={p.websiteurl}
+              target="_blank"
+              className="hover:text-blue-400 transform hover:scale-110 transition-all"
+            >
+              <div className="flex flex-col items-center">
+                <div className="rounded-full overflow-hidden">
+                  <img src={p.logo} alt={p.name} className="w-14 sm:w-24" />
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
       <div className="container mx-auto px-6 py-8">
         {/* Top / Main */}
@@ -43,7 +49,7 @@ export default function Footer() {
               href="index.html"
               className="flex items-center gap-3 justify-center h-full"
             >
-              <img src={Logo} alt="Satomen" className="w-72" />
+              <img src={Logo} alt="Satomen" className="w-72 hidden sm:block" />
             </a>
           </div>
 
@@ -70,7 +76,6 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-
             <div className="mt-6 flex items-start gap-4">
               <span className="rounded-full bg-yellow-400/10 p-2 text-yellow-400">
                 <MapPin className="h-5 w-5" aria-hidden="true" />
@@ -148,7 +153,6 @@ export default function Footer() {
 
         {/* Divider */}
         <div className="my-4 h-px w-full bg-slate-800" />
-
         {/* Bottom / Secondary */}
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between justify-center">
           <p className="text-slate-300 leading-relaxed text-center">
@@ -158,7 +162,6 @@ export default function Footer() {
               All rights reserved Copyrights <span>{currentYear}</span>
             </span>
           </p>
-
           {/* <ul className="flex items-center gap-4">
             {[
               { label: "Facebook", icon: Facebook, href: "#" },

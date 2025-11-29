@@ -9,7 +9,7 @@ export default function Header() {
   const navigate = useNavigate();
 
   const toggleDropdown = (item) => {
-    if (!item.children) {
+    if (item && !item.children) {
       navigate(item.to);
       setMenuOpen(false);
       return;
@@ -89,6 +89,7 @@ export default function Header() {
                       <li key={child.label}>
                         <NavLink
                           to={child.to}
+                          onClick={() => setOpenDropdown(null)}
                           className="block px-4 py-2 hover:bg-yellow-100 hover:text-yellow-600"
                         >
                           {child.label}
