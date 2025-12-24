@@ -22,6 +22,10 @@ export const routes = [
     path: "/about/team",
     Component: lazy(() => import("./pages/about/Team")),
   },
+  {
+    path: "/about/partners",
+    Component: lazy(() => import("./pages/about/Partners")),
+  },
 
   // --- OTHER ROUTES ---
   {
@@ -38,13 +42,15 @@ export const routes = [
     Component: lazy(() => import("./pages/projects/ProjectsDetails")),
   },
 
-  { path: "/services", Component: lazy(() => import("./pages/services/Services")) },
+  {
+    path: "/services",
+    Component: lazy(() => import("./pages/services/Services")),
+  },
 
-  { path: "/services/:id", Component: lazy(() => import("./pages/services/ServiceDetails")) },
-
-  
-
-
+  {
+    path: "/services/:id",
+    Component: lazy(() => import("./pages/services/ServiceDetails")),
+  },
 
   //  {
   //    path: "/services",
@@ -57,50 +63,50 @@ export const routes = [
   //      { path: "team", element: lazy(() => import("./pages/services/Team")) },
   //    ],
   //  },
-//    {
-//      path: "/projects",
-//      children: [
-//        {
-//          index: true,
-//          element: lazy(() => import("./pages/projects/Projects")),
-//        },
-//       //  {
-//       //    path: "alt",
-//       //    element: lazy(() => import("./pages/projects/Projects2")),
-//       //  },
-//       //  {
-//       //    path: "single",
-//       //    element: lazy(() => import("./pages/projects/SingleProject")),
-//       //  },
-//      ],
-//    },
-//    {
-//      path: "/contacts",
-//      children: [
-//        {
-//          index: true,
-//          element: lazy(() => import("./pages/contacts/Contacts1")),
-//        },
-//        {
-//          path: "alt",
-//          element: lazy(() => import("./pages/contacts/Contacts2")),
-//        },
-//      ],
-//    },
-//    {
-//      path: "/pages",
-//    children: [
-//        { path: "faq", element: lazy(() => import("./pages/misc/FAQ")) },
-//        {
-//         path: "gallery-grid",
-//          element: lazy(() => import("./pages/gallery/Grid")),
-//        },
-//        {
-//          path: "gallery-masonry",
-//          element: lazy(() => import("./pages/gallery/Masonry")),
-//        },
-//       { path: "404", element: lazy(() => import("./pages/misc/NotFound")) },
-//      ],
-//    },
-//    { path: "*", element: lazy(() => import("./pages/misc/NotFound")) },
- ];
+  //    {
+  //      path: "/projects",
+  //      children: [
+  //        {
+  //          index: true,
+  //          element: lazy(() => import("./pages/projects/Projects")),
+  //        },
+  //       //  {
+  //       //    path: "alt",
+  //       //    element: lazy(() => import("./pages/projects/Projects2")),
+  //       //  },
+  //       //  {
+  //       //    path: "single",
+  //       //    element: lazy(() => import("./pages/projects/SingleProject")),
+  //       //  },
+  //      ],
+  //    },
+  //    {
+  //      path: "/contacts",
+  //      children: [
+  //        {
+  //          index: true,
+  //          element: lazy(() => import("./pages/contacts/Contacts1")),
+  //        },
+  //        {
+  //          path: "alt",
+  //          element: lazy(() => import("./pages/contacts/Contacts2")),
+  //        },
+  //      ],
+  //    },
+  //    {
+  //      path: "/pages",
+  //    children: [
+  //        { path: "faq", element: lazy(() => import("./pages/misc/FAQ")) },
+  //        {
+  //         path: "gallery-grid",
+  //          element: lazy(() => import("./pages/gallery/Grid")),
+  //        },
+  //        {
+  //          path: "gallery-masonry",
+  //          element: lazy(() => import("./pages/gallery/Masonry")),
+  //        },
+  //       { path: "404", element: lazy(() => import("./pages/misc/NotFound")) },
+  //      ],
+  //    },
+  //    { path: "*", element: lazy(() => import("./pages/misc/NotFound")) },
+];

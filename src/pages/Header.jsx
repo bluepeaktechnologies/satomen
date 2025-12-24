@@ -25,6 +25,7 @@ export default function Header() {
         { label: "Company Profile", to: "/about/company" },
         { label: "Management Team", to: "/about/management-team" },
         { label: "Team", to: "/about/team" },
+        { label: "Our Partners", to: "/about/partners" },
       ],
     },
     { label: "SERVICES", to: "/services" },

@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import { routes } from "./routes";
 import Layout from "./layout/Layout";
+import "@xyflow/react/dist/base.css";
 
 const withLayout = {
   element: <Layout />,
