@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Linkedin } from "lucide-react";
 import hero from "../../assets/vessel.jpg";
-import presidentImg from "../../assets/vessel.jpg"; // Replace with real image
-import vicePresidentImg from "../../assets/vessel.jpg"; // Replace with real image
+import presidentImg from "../../assets/board/placeholder.png"; // Replace with real image
+import vicePresidentImg from "../../assets/board/dimari.jpg"; // Replace with real image
 import PageHeader from "../../layout/PageHeader"; // ✅ Shared Page Header
 
 // Animation variants
@@ -85,7 +85,7 @@ function Leadership() {
               <motion.img
                 src={leader.image}
                 alt={leader.name}
-                className="mx-auto h-64 w-full object-cover rounded-lg"
+                className="mx-auto h-64 w-64 object-cover rounded-lg"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.6 }}
               />

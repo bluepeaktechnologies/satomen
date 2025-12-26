@@ -5,12 +5,12 @@ import hero from "../../assets/vessel.jpg";
 import PageHeader from "../../layout/PageHeader";
 
 // Placeholder images — replace with real ones
-import leader1 from "../../assets/vessel.jpg";
-import leader2 from "../../assets/vessel.jpg";
-import leader3 from "../../assets/vessel.jpg";
-import leader4 from "../../assets/vessel.jpg";
-import leader5 from "../../assets/vessel.jpg";
-import leader6 from "../../assets/vessel.jpg";
+import leader1 from "../../assets/board/placeholder.png";
+import leader2 from "../../assets/board/placeholder.png";
+import leader3 from "../../assets/board/placeholder.png";
+import leader4 from "../../assets/board/placeholder.png";
+import leader5 from "../../assets/board/placeholder.png";
+import leader6 from "../../assets/board/placeholder.png";
 
 // ---------- ANIMATION VARIANTS ----------
 const fadeUp = {
@@ -30,8 +30,7 @@ const leaders = [
     image: leader1,
     email: "abdulrahman.musa@satomen.com",
     linkedin: "#",
-    bio:
-      "Abdulrahman Musa is an experienced energy executive with 18+ years in petroleum trading, downstream operations and strategic supply chain management. He leads Satomen Investment SA’s strategic vision and growth across West Africa’s fuel distribution networks.",
+    bio: "Abdulrahman Musa is an experienced energy executive with 18+ years in petroleum trading, downstream operations and strategic supply chain management. He leads Satomen Investment SA’s strategic vision and growth across West Africa’s fuel distribution networks.",
   },
   {
     name: "Chiamaka Okafor",
@@ -39,8 +38,7 @@ const leaders = [
     image: leader2,
     email: "chiamaka.okafor@satomen.com",
     linkedin: "#",
-    bio:
-      "Chiamaka manages bulk procurement, trading operations and vendor relationships for Satomen. With deep market experience in AGO, PMS and DPK, she secures supply continuity and pricing efficiency for industrial clients.",
+    bio: "Chiamaka manages bulk procurement, trading operations and vendor relationships for Satomen. With deep market experience in AGO, PMS and DPK, she secures supply continuity and pricing efficiency for industrial clients.",
   },
   {
     name: "Engr. Mohammed Sadiq",
@@ -48,8 +46,7 @@ const leaders = [
     image: leader3,
     email: "mohammed.sadiq@satomen.com",
     linkedin: "#",
-    bio:
-      "Engineer Mohammed Sadiq oversees terminal operations, coastal vessel coordination and custody transfer processes. He drives operational reliability through QC standards and depot partnerships across the region.",
+    bio: "Engineer Mohammed Sadiq oversees terminal operations, coastal vessel coordination and custody transfer processes. He drives operational reliability through QC standards and depot partnerships across the region.",
   },
   {
     name: "Fatima Ibrahim",
@@ -57,8 +54,7 @@ const leaders = [
     image: leader4,
     email: "fatima.ibrahim@satomen.com",
     linkedin: "#",
-    bio:
-      "Fatima leads commercial strategy, client acquisition and partnership development. She focuses on market expansion and bespoke commercial solutions that align with Satomen’s growth and customer outcomes.",
+    bio: "Fatima leads commercial strategy, client acquisition and partnership development. She focuses on market expansion and bespoke commercial solutions that align with Satomen’s growth and customer outcomes.",
   },
   {
     name: "Oluwaseun Adeyemi",
@@ -66,8 +62,7 @@ const leaders = [
     image: leader5,
     email: "oluwaseun.adeyemi@satomen.com",
     linkedin: "#",
-    bio:
-      "Oluwaseun is responsible for Satomen’s financial strategy, capital allocation and risk governance. His experience in energy finance ensures disciplined growth and compliance across trading operations.",
+    bio: "Oluwaseun is responsible for Satomen’s financial strategy, capital allocation and risk governance. His experience in energy finance ensures disciplined growth and compliance across trading operations.",
   },
   {
     name: "Hassan Umar",
@@ -75,8 +70,7 @@ const leaders = [
     image: leader6,
     email: "hassan.umar@satomen.com",
     linkedin: "#",
-    bio:
-      "Hassan leads Satomen’s HSSE program with a zero-incident approach across marine, road and terminal operations. He implements safety systems, emergency response plans and environmental stewardship practices.",
+    bio: "Hassan leads Satomen’s HSSE program with a zero-incident approach across marine, road and terminal operations. He implements safety systems, emergency response plans and environmental stewardship practices.",
   },
 ];
 
@@ -148,22 +142,18 @@ function ProfileCard({ leader }) {
       transition={{ duration: 0.3 }}
       aria-label={`${leader.name}, ${leader.title}`}
     >
-      <div className="overflow-hidden rounded-lg">
+      <div className="flex justify-center overflow-hidden rounded-lg">
         <motion.img
           src={leader.image}
           alt={`${leader.name} — ${leader.title}`}
-          className="h-56 w-full object-cover rounded-lg"
+          className="h-56 w-56 object-cover rounded-lg self-center"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.6 }}
         />
       </div>
 
-      <h3 className="mt-4 text-lg font-bold text-slate-900">
-        {leader.name}
-      </h3>
-      <p className="mt-1 text-sm font-medium text-[#28c391]">
-        {leader.title}
-      </p>
+      <h3 className="mt-4 text-lg font-bold text-slate-900">{leader.name}</h3>
+      <p className="mt-1 text-sm font-medium text-[#28c391]">{leader.title}</p>
 
       <p className="mt-3 text-sm text-slate-600 leading-relaxed text-justify">
         {leader.bio}
