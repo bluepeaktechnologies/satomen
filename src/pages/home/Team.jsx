@@ -1,6 +1,7 @@
 import { motion, useAnimation } from "framer-motion";
 import { useRef, useState } from "react";
 import { copy } from "../../content/copy";
+import vicePresidentImage from "../../assets/board/dimari.jpg";
 
 const defaults = {
   eyebrow: "Truth in operations",
@@ -17,7 +18,7 @@ const defaults = {
     text: "Our commitment is simple: safe, compliant and dependable movement—every time.",
     name: "Mohammed Dimari",
     role: "Vice President",
-    avatar: "/author.jpg",
+    avatar: vicePresidentImage,
   },
 };
 
