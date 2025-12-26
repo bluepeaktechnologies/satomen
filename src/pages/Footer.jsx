@@ -19,7 +19,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#0d2038] text-slate-100 pt-5">
-      <h1 className="pl-10 pb-10 text-2xl font-bold capitalize">
+      {/* <h1 className="pl-10 pb-10 text-2xl font-bold capitalize">
         our Partners
       </h1>
       <div className="overflow-hidden">
@@ -39,7 +39,7 @@ export default function Footer() {
             </a>
           ))}
         </div>
-      </div>
+      </div> */}
       <div className="container mx-auto px-6 py-8">
         {/* Top / Main */}
         <div className="grid gap-10 md:gap-12 lg:gap-16 md:grid-cols-2 lg:grid-cols-4">
