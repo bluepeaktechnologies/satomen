@@ -55,12 +55,16 @@ export default function Partners() {
           edges={edges}
           nodeTypes={nodeTypes}
           fitView
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
+          // onNodesChange={onNodesChange}
+          // onEdgesChange={onEdgesChange}
+          // onConnect={onConnect}
           contentEditable={"false"}
           zoomOnScroll={false}
           preventScrolling={false}
+          draggable={false}
+          zoomOnPinch={false}
+          panOnDrag={false}
+          panOnScroll={false}
         />
       </div>
     </div>
